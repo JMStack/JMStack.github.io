@@ -81,28 +81,23 @@
 
 
 <meta name="description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-
-上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个D">
+![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微博,微信图片浏览过渡动画的实现">
 <meta property="og:url" content="http://jmstack.github.io/2016/02/02/微博-微信图片浏览过渡动画的实现/index.html">
 <meta property="og:site_name" content="Lemtter">
 <meta property="og:description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-
-上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个D">
-<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif">
-<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif">
+![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E7%9A%84%E5%A4%A7%E5%9B%BEcell%E5%AE%BD%E8%AE%BE%E7%BD%AE.png">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%9B%BE%E7%89%87%E9%97%B4%E9%9A%94%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/modal%20%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84.png">
-<meta property="og:updated_time" content="2016-05-04T14:09:03.000Z">
+<meta property="og:updated_time" content="2016-05-04T14:59:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微博,微信图片浏览过渡动画的实现">
 <meta name="twitter:description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-
-上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个D">
-<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif">
+![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
+<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif">
 
 
 
@@ -308,18 +303,20 @@
 
       
         <p>大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…</p>
-<p><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif" alt="微博九宫格"><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif" alt="微信九宫格"></p>
-<p>上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个Demo来介绍实现这种效果的具体思路,如果你有更好的思路,请求赐教</p>
+<pre><code>![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif)
+
+![微信九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif)
+</code></pre><p>上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个Demo来介绍实现这种效果的具体思路,如果你有更好的思路,请求赐教</p>
 <hr>
 <h1 id="Demo-预览"><a href="#Demo-预览" class="headerlink" title="Demo 预览"></a>Demo 预览</h1><p>在开始之前先看一看最终的效果</p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif" alt="Demo 预览"></p>
 <p>这个Demo抓取了<a href="http://www.meilishuo.com" target="_blank" rel="external">美丽说</a>的在线图片,这里对毫不知情的美丽说表示感谢.<br>在看下面的部分之前假定你已经撑握了Swift,网络请求,会使用UICollectionView等基础组件的技能.如若不能撑握建议先了解相关知识</p>
-<p><a href="">GitHub地址</a></p>
+<p><em>Demo<a href="https://github.com/JMStack/PhotoBrowse.git" target="_blank" rel="external">GitHub地址</a></em></p>
 <a id="more"></a>
 <h1 id="Demo-结构分析"><a href="#Demo-结构分析" class="headerlink" title="Demo 结构分析"></a>Demo 结构分析</h1><p>在Demo中主要包括两个主要的视图结构:一 缩略图(主视图)的浏览 二 大图的浏览. 这两个视图中所要展示的内容都是有规律的矩形所以都可以用UICollectionView来实现.<br>两者的区别在于缩略图是垂直方向的布局而大图是水平方向上的布局方式.两个UICollectionView的cell的内容只包含一个UIImageView.在大图浏览视图中有一个<br>需要注意的细节:为了图片浏览的效果每张图片之间是有一定间隔的,如果让每个cell都填充整个屏幕,图片的宽度等于cell的宽度再去设置cell的间隔来达到间隔的效果会在停止滑动图片时黑色的间隔会显现在屏幕中(如下图),这并不是我们想看到的结果.</p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E7%9A%84%E5%A4%A7%E5%9B%BEcell%E5%AE%BD%E8%AE%BE%E7%BD%AE.png" alt="错误的大图cell宽设置"></p>
 <p>出现这个问题的原因是UICollectionView的分页(pagingEnabled)效果是以UICollectionView的宽来滚动的,也就是说不管你的cell有多大每次滚动总是一个UICollectionView自身的宽.要实现这个效果有个小技巧,相关内容会在<strong>大图浏览的实现</strong>一节中介绍.</p>
-<h1 id="主视图图片浏览的实现"><a href="#主视图图片浏览的实现" class="headerlink" title="主视图图片浏览的实现"></a>主视图图片浏览的实现</h1><p>根据上一节得出的结论,主视图采用colletionview,这部分实现没什么特别的技巧,但在添加collectionview之前需要添加几个基础组件.<br>因为我们所需的图片是抓取美丽说的网络图片,所以我们需要一个网络请求组件,另外为展示图片还需要添加对应的数据模型.但这两个组件的内容不是本篇博文主要讨论的问题<br>另外这两个组件相对较基础,就不废太多口水.具体实现可以参看<a href="">GitHub</a>源码,每次网络请求这里设置为30条数据,这里提到也是为了让你在下面的章节看到相关部分不至于感到疑惑,<br>添加完这两个基础组件之后,就可以实现缩略图的浏览部分了.为方便起见缩略图view的控制器采用UICollectionViewController,在viewDidLoad函数中设置流水布局样式,实现collectionview的datasource,delegate.这部分都是一些常规的写法,这里要关注的是datasource和delegate的下两个函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -&gt; UICollectionViewCell &#123;</span><br><span class="line">    // 从缓存池中取出重用cell</span><br><span class="line">    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CollectionViewCell</span><br><span class="line">    // 从模形数组中取出相应的模形</span><br><span class="line">    let item = shopitems[indexPath.item];</span><br><span class="line">    // 设置模形数据为显示缩略图模式</span><br><span class="line">    item.showBigImage = false</span><br><span class="line">    // 把模形数据赋值给cell,由cell去决定怎样显示,显示什么内容</span><br><span class="line">    cell?.item = item</span><br><span class="line">    // 当滑动到到最后一个cell时请求加载30个数据</span><br><span class="line">    if indexPath.item == shopitems.count - 1 &#123;</span><br><span class="line">        loadMoreHomePageData(shopitems.count)</span><br><span class="line">    &#125;</span><br><span class="line">    return cell!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="主视图图片浏览的实现"><a href="#主视图图片浏览的实现" class="headerlink" title="主视图图片浏览的实现"></a>主视图图片浏览的实现</h1><p>根据上一节得出的结论,主视图采用colletionview,这部分实现没什么特别的技巧,但在添加collectionview之前需要添加几个基础组件.<br>因为我们所需的图片是抓取美丽说的网络图片,所以我们需要一个网络请求组件,另外为展示图片还需要添加对应的数据模型.但这两个组件的内容不是本篇博文主要讨论的问题<br>另外这两个组件相对较基础,就不废太多口水.具体实现可以参看<a href="https://github.com/JMStack/PhotoBrowse.git" target="_blank" rel="external">GitHub</a>源码,每次网络请求这里设置为30条数据,这里提到也是为了让你在下面的章节看到相关部分不至于感到疑惑,<br>添加完这两个基础组件之后,就可以实现缩略图的浏览部分了.为方便起见缩略图view的控制器采用UICollectionViewController,在viewDidLoad函数中设置流水布局样式,实现collectionview的datasource,delegate.这部分都是一些常规的写法,这里要关注的是datasource和delegate的下两个函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -&gt; UICollectionViewCell &#123;</span><br><span class="line">    // 从缓存池中取出重用cell</span><br><span class="line">    let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as? CollectionViewCell</span><br><span class="line">    // 从模形数组中取出相应的模形</span><br><span class="line">    let item = shopitems[indexPath.item];</span><br><span class="line">    // 设置模形数据为显示缩略图模式</span><br><span class="line">    item.showBigImage = false</span><br><span class="line">    // 把模形数据赋值给cell,由cell去决定怎样显示,显示什么内容</span><br><span class="line">    cell?.item = item</span><br><span class="line">    // 当滑动到到最后一个cell时请求加载30个数据</span><br><span class="line">    if indexPath.item == shopitems.count - 1 &#123;</span><br><span class="line">        loadMoreHomePageData(shopitems.count)</span><br><span class="line">    &#125;</span><br><span class="line">    return cell!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这里为使Demo不过于复杂,没有用什么”上拉加载更多”控件,每次滑动到到最后一个cell时请求加载30个数据方式同样能获得良好的滑动体验</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) &#123;</span><br><span class="line">    // 当点击某个cell时, 创建大图浏览控制器</span><br><span class="line">    let photoVC = PhotoBrowseCollectionVC()</span><br><span class="line">    // 当前点击cell的indexPathw传给控制器,以使大图浏览器直接显示对应图片</span><br><span class="line">    photoVC.indexPath = indexPath</span><br><span class="line">    // 当前模型数组的内容传给控制器,以使大图浏览能左右滑动</span><br><span class="line">    photoVC.items = shopitems</span><br><span class="line">    // 先以正常形式modal出大图浏览</span><br><span class="line">    presentViewController(photoVC, animated: true, completion: nil)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里先以正常的样式(从底部弹出)modal出大图浏览视图,当缩略图和大图的逻辑跳转逻辑完成后再来完善画动逻辑</p>
