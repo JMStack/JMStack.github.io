@@ -81,23 +81,31 @@
 
 
 <meta name="description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
+
+
+上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微博,微信图片浏览过渡动画的实现">
 <meta property="og:url" content="http://jmstack.github.io/2016/02/02/微博-微信图片浏览过渡动画的实现/index.html">
 <meta property="og:site_name" content="Lemtter">
 <meta property="og:description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
+
+
+上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E9%94%99%E8%AF%AF%E7%9A%84%E5%A4%A7%E5%9B%BEcell%E5%AE%BD%E8%AE%BE%E7%BD%AE.png">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%9B%BE%E7%89%87%E9%97%B4%E9%9A%94%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.png">
 <meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/modal%20%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84.png">
-<meta property="og:updated_time" content="2016-05-04T14:59:13.000Z">
+<meta property="og:updated_time" content="2016-05-04T15:01:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微博,微信图片浏览过渡动画的实现">
 <meta name="twitter:description" content="大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…
-![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5">
-<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif">
+
+
+上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个">
+<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif">
 
 
 
@@ -303,10 +311,9 @@
 
       
         <p>大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…</p>
-<pre><code>![微博九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif)
-
-![微信九宫格](http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif)
-</code></pre><p>上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个Demo来介绍实现这种效果的具体思路,如果你有更好的思路,请求赐教</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif" alt="微博九宫格"></p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif" alt="微信九宫格"></p>
+<p>上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个Demo来介绍实现这种效果的具体思路,如果你有更好的思路,请求赐教</p>
 <hr>
 <h1 id="Demo-预览"><a href="#Demo-预览" class="headerlink" title="Demo 预览"></a>Demo 预览</h1><p>在开始之前先看一看最终的效果</p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/Demo%E9%A2%84%E8%A7%88.gif" alt="Demo 预览"></p>
