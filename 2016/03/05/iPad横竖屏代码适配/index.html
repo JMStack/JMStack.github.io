@@ -1,0 +1,669 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iPad,代码屏幕适配," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="你可能非常了解用不同的方式去适配不同尺寸的iPhone屏幕,在适配iPhone屏幕时你需要考虑的只是屏幕大小变化带来的UI元素间隔的变化,但是在iPad上主要针对的是横竖屏下完全不同的UI元素的布局,在这种情况下要考虑的就不仅仅是元素之间间隔这种问题了,除了要确保UI元素在这两种模式下的正确显示还要兼顾屏幕旋转的过渡动画.下图是QQZone For iPad 在横竖屏下的布局,可以看到横竖屏下菜单">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iPad横竖屏代码适配">
+<meta property="og:url" content="http://jmstack.github.io/2016/03/05/iPad横竖屏代码适配/index.html">
+<meta property="og:site_name" content="Lemtter">
+<meta property="og:description" content="你可能非常了解用不同的方式去适配不同尺寸的iPhone屏幕,在适配iPhone屏幕时你需要考虑的只是屏幕大小变化带来的UI元素间隔的变化,但是在iPad上主要针对的是横竖屏下完全不同的UI元素的布局,在这种情况下要考虑的就不仅仅是元素之间间隔这种问题了,除了要确保UI元素在这两种模式下的正确显示还要兼顾屏幕旋转的过渡动画.下图是QQZone For iPad 在横竖屏下的布局,可以看到横竖屏下菜单">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E6%A8%AA%E5%B1%8F.PNG">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E7%AB%96%E5%B1%8F.PNG">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/SizecClass.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/AutoLayout.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E9%A2%84%E8%A7%88-Slow.gif">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E9%A2%84%E8%A7%88.gif">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/Demo%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84.png">
+<meta property="og:updated_time" content="2016-05-07T02:31:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iPad横竖屏代码适配">
+<meta name="twitter:description" content="你可能非常了解用不同的方式去适配不同尺寸的iPhone屏幕,在适配iPhone屏幕时你需要考虑的只是屏幕大小变化带来的UI元素间隔的变化,但是在iPad上主要针对的是横竖屏下完全不同的UI元素的布局,在这种情况下要考虑的就不仅仅是元素之间间隔这种问题了,除了要确保UI元素在这两种模式下的正确显示还要兼顾屏幕旋转的过渡动画.下图是QQZone For iPad 在横竖屏下的布局,可以看到横竖屏下菜单">
+<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E6%A8%AA%E5%B1%8F.PNG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> iPad横竖屏代码适配 | Lemtter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0d743852f614de6854b2866588b4d49e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lemtter</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Easy Man...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iPad横竖屏代码适配
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-05T20:07:10+08:00" content="2016-03-05">
+              2016-03-05
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/05/iPad横竖屏代码适配/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/05/iPad横竖屏代码适配/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>你可能非常了解用不同的方式去适配不同尺寸的iPhone屏幕,在适配iPhone屏幕时你需要考虑的只是屏幕大小变化带来的UI元素间隔的变化,但是在iPad上主要针对的是横竖屏下完全不同的UI元素的布局,在这种情况下要考虑的就不仅仅是元素之间间隔这种问题了,除了要确保UI元素在这两种模式下的正确显示还要兼顾屏幕旋转的过渡动画.下图是QQZone For iPad 在横竖屏下的布局,可以看到横竖屏下菜单栏的布局方式差别很大.</p>
+<p>QQZone for iPad <a href="https://github.com/JMStack/QQZone" target="_blank" rel="external">GitHub地址</a><br><a id="more"></a></p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E6%A8%AA%E5%B1%8F.PNG" alt="QQZone for iPad 竖屏"><br><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E7%AB%96%E5%B1%8F.PNG" alt="QQZone for iPad 横屏"></p>
+<h2 id="屏幕适配的N种方法"><a href="#屏幕适配的N种方法" class="headerlink" title="屏幕适配的N种方法"></a>屏幕适配的N种方法</h2><p>无论iPad还是iPhone适配不同屏幕(尺寸,方向)的方式都跑不出以下几种,以下会一一对不同方式做一下简单的回顾.</p>
+<h3 id="Autoresizing"><a href="#Autoresizing" class="headerlink" title="Autoresizing"></a>Autoresizing</h3><p>Autoresizing可以说是Autolayout始祖,Autoresizing的是一项比较有历史的技术了,其在iOS2的时代就推出了.当设置UIView实例对象的autoresizesSubviews属性为true(默认值为true),那么其子view会根据自已的autoresizingMask属性值自动调整与superview的位置和大小关系.autoresizingMask有六种可组合的使用的值,默认值是.None.这六种有效枚举值的意思如下:</p>
+<ul>
+<li>FlexibleLeftMargin   按比例跟随父控件变化的左间距</li>
+<li>FlexibleWidth        按比例跟随交控件变化的宽度</li>
+<li>FlexibleRightMargin  按比例跟随父控件变化的右间距</li>
+<li>FlexibleTopMargin    按比例跟随父控件变化的顶部间距</li>
+<li>FlexibleHeight       按比例跟随控件变化的高度</li>
+<li>FlexibleBottomMargin 按比例跟随父控件变化的底部间距</li>
+</ul>
+<p>另外在xib,storyboard取消Autolayout时(Autoresizing与Autolayout相互冲突)可以在Size inspector可以更加直观地按需求进行组和使用.Autoresizing技术在一定应用场景下可以勉强使用但应对更为精细的布局就无能为力了,你可以在使用Autoresizing同时重写layoutSubviews方法去做更为精细的布局,尽管如此但还是不推荐这么做,因为同时得写layoutSubviews和使用Autoresizing去布局会让你的布局逻辑变得不清晰,这将给后期的维护带来麻烦.</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/SizecClass.png" alt="Autoresizing in storyboard"></p>
+<h3 id="Autolayout"><a href="#Autolayout" class="headerlink" title="Autolayout"></a>Autolayout</h3><p>Autolayout是iOS6时代引入的技术,专门用来处理不同屏幕尺寸下的UI布局.从Xcode6开始Autolayout配合xib,storyboard极大的提高屏幕的适配工作效率.在一定程度上甚至可以完全摆脱设置frame布局的方式.由于storyboard,xib在多人合作开发冲突不断的尴尬境地,在实际的开发中多使用第三方框架用代码进行Autolayout布局.这样既避免了解决冲突麻烦又享受到了Autolayout带来的宏利.比较受欢迎的Autolayout每三方框架有<a href="https://github.com/SnapKit/Masonry" target="_blank" rel="external">Masonry</a>还有<a href="http://weibo.com/gsdios?profile_ftype=1&amp;is_all=1#_0" target="_blank" rel="external">GSD_iOS</a>大神的<a href="https://github.com/gsdios/SDAutoLayout" target="_blank" rel="external">SDAutoLayout</a></p>
+<p>尽管Autolayout有很多好处但还是很多代码党不愿使用,究其原因还是约束.约束的问题大至可以分约束冲突和约束不满足两大类,当在storyboard中对一个复杂的界面进行Autolayout约束,一但出现问题将很难排查,用代码行约束往往程序运行起来才能确认约束是否满足条件,同样排查起来也不是那么方便.关于Autolayout这不再占用过多的篇幅,网上有相当多的资料可供参考.</p>
+<h3 id="SizeClass"><a href="#SizeClass" class="headerlink" title="SizeClass"></a>SizeClass</h3><p>SizeClass是要配合Autolayout使用的,SizeClass实际上是对屏幕尺寸的抽象,把屏幕宽高分成Compact:紧凑、Regular:宽松、Any:任意三种类型这样就可以组合出九种不同的屏幕类型.在storyboard,xib编辑界面下最下方可以选择某一约束在只在某一类屏幕下生效.这样可以在不同屏幕下得到不同的UI布局效果.关于SizeClass的使用可以参考<a href="https://www.raywenderlich.com/113768/adaptive-layout-tutorial-in-ios-9-getting-started" target="_blank" rel="external">raywenderlich</a>系例文章.</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/AutoLayout.png" alt="SizeClass"></p>
+<h3 id="代码计算坐标"><a href="#代码计算坐标" class="headerlink" title="代码计算坐标"></a>代码计算坐标</h3><p>在所有的布局方法中这种可能是最费体力的一项,因为所有的UI元素都需要一个一个明确的计算或者指定出来.尽管如此正因为每个元素的frame是手动计算因此灵活性也非常大你可以随心所欲的计算每个控件的frame,出现问题时也非常好排查.如果需要动态的改变view的frame就需要重写父控件的layoutSubviews方法,在重写的layoutSubviews明确计算出frame. 如果view是固定的则只需要在添加到父控件时指定view的frame.一般常见的代码布局形式如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">override func layoutSubviews() &#123;</span><br><span class="line">    super.layoutSubviews()</span><br><span class="line">    let x: CGFloat = 0</span><br><span class="line">    let y: CGFloat = frame.height * 0.7 // 根据父控件高度按比例确定y座标</span><br><span class="line">    let w: CGFloat = frame.width</span><br><span class="line">    let h: CGFloat = frame.height - y  // 根据父控件高度,子控件按比例调整高度</span><br><span class="line">    subView.frame = CGRectMake(x, y, w, h)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面是常见的根据父控件动态调整子控件frame的形式,真实开发中可能还需要考虑横竖屏下动态的布局(下面将提到的),以上基本形式可以根据需求进行扩展.当然你也可以不用重写layoutSubviews方法而在需要改变frame的时机显式直接改变frame,但在这种方式并不符合苹果的逻辑.在view的层次结构中某一view肯定是有superview的,而子view是否变化,以及什么时候变化应是由superview来决定的,在一个多层次结构的view视图中如果显示的设定子view的frame那你不得不根据view的层次结构一级一级的设置子view的frame.superview和subView之前会出现较强的关联性.理想情况下一个superview应该只关注自身的subView的布局,无论这个superview的frame或层次结构怎么变化其subviews并不需要知道.因此我觉得比较好的做法是有所关于subviews的frame的设定都应该重写layoutSubviews,在layoutSubviews中去做.这样做的另一个好处是屏幕旋转时你并不需要显示的去写UIView动画.</p>
+<h2 id="layoutsubviews的调用时机"><a href="#layoutsubviews的调用时机" class="headerlink" title="layoutsubviews的调用时机"></a>layoutsubviews的调用时机</h2><p>用代码在layoutSubviews中布局你必需要知道系统会在哪些时机去调用layoutsubviews函数.关于这个问题的结论可以参看<a href="http://stackoverflow.com/questions/728372/when-is-layoutsubviews-called" target="_blank" rel="external">stackoverflow</a>的讨论.关于这个问题我个人比较赞同第二个回答者对第一个回答的纠正.基本上layoutsubviews会在以下几种情况下调用:</p>
+<ul>
+<li>当view的bounds发生改变时</li>
+<li>当view的直接subView的bounds发生改变时</li>
+<li>当subView添加或移除时</li>
+<li>调用setNeedsLayout方法会在下一个显示周期主动调用layoutsubviews</li>
+</ul>
+<h2 id="如何获取当前屏幕方向"><a href="#如何获取当前屏幕方向" class="headerlink" title="如何获取当前屏幕方向"></a>如何获取当前屏幕方向</h2><p>关于获取当前屏幕方向我所知道的方法仅包括以下几种:</p>
+<ul>
+<li>通过控制器的interfaceOrientation只读属性获取,<strong>iOS8后过期</strong></li>
+<li>能过状态栏的方向间接获取,UIApplication的只读属性statusBarOrientation,<strong>iOS9后过期</strong></li>
+<li>能过UIDevice只读属性orientation获取.需主动调用beginGeneratingDeviceOrientationNotifications开启通知</li>
+<li>通过根控制器的view宽高推导获取,当高&gt;宽为竖屏否则为横屏</li>
+</ul>
+<h2 id="Demo预览"><a href="#Demo预览" class="headerlink" title="Demo预览"></a>Demo预览</h2><p>下面是这个Demo的最终效果,我将通个下面的例子记录我认为合理的代码适配横竖屏的方式.</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E9%A2%84%E8%A7%88-Slow.gif" alt="Demo预览慢速"><br><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E9%A2%84%E8%A7%88.gif" alt="Demo预览正常"></p>
+<h2 id="Demo分析"><a href="#Demo分析" class="headerlink" title="Demo分析"></a>Demo分析</h2><p>上面一些基础的知识将有助于理解Demo的做法,所以尽管有一点废话连篇的感觉好在也并不是一无是处.在讲解Demo的实现思路之前你可以在<a href="https://github.com/JMStack/QQZone" target="_blank" rel="external">GitHub</a>下载这个Demo,以便更方便的查看我讲到的代码.</p>
+<p>Demo中最复杂的,横竖屏布局变化最大的部分就是左侧的菜单栏可以称它为Dock栏,通过旋转屏幕可以看到原生QQZone HD的Dock栏的变化.可以根据变化的特征将整个Dock栏分为三部分.一是顶部的头像 二是中间的类TabBar,我称它为TabBar 三是 底部的快捷导航菜单.因此DockView的subview包含iconButton,tabBarView,menuBar三个,而这三个subview又可以分另包含各自的子控件.</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/Demo%E8%A7%86%E5%9B%BE%E7%BB%93%E6%9E%84.png" alt="view层次结构"></p>
+<p>实际上实现QQZone for iPad屏幕的横竖屏的布局并不复杂.一个view要知道怎样在layoutSubviews中去布局其子view只需知道当前其superview的状态(横竖屏).在这里我声明了一个协议,这个协议只包含一个获取当前view是否是竖屏的方法.让每一个需要根据横竖屏动态变化的view都实现这个协议的方法,这样在layoutSubviews方法就可以询问当前应该怎么样布局子控件而当前状态是由父控件状态决定的.由此形成了屏幕状态的传递链,使得每个veiw只关心自身直接subview的布局.<br><figure class="highlight plain"><figcaption><span>UIViewisPortrait协议</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protocol UIViewisPortrait: NSObjectProtocol &#123;</span><br><span class="line">    func isPortrait() -&gt; Bool</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>根控制器view的任意subview可都可以通过如下代码获取当前是否是竖屏<br><figure class="highlight plain"><figcaption><span>subview 如何获取superview状态</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">func isPortrait() -&gt; Bool &#123;</span><br><span class="line">    guard let superview = superview else &#123; // 如果不存大superview默认返回竖屏</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">    return ((superview as? UIViewisPortrait)?.isPortrait())!</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而根控制器view则直接通过宽高获取屏幕状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func isPortrait() -&gt; Bool &#123;</span><br><span class="line">    return frame.width &lt; frame.height</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当前view知道是横竖屏后就可以直接在layoutsubviews布局子控件了,以menuBar为例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">override func layoutSubviews() &#123;</span><br><span class="line">    super.layoutSubviews()</span><br><span class="line">    guard subviews.count &gt; 0 else &#123;</span><br><span class="line">        return</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    var x, y, w, h:CGFloat</span><br><span class="line">    for (index, view) in subviews.enumerate() &#123;</span><br><span class="line">        if isPortrait() == true &#123;</span><br><span class="line">            w = frame.width</span><br><span class="line">            h = kDockItemHeight</span><br><span class="line">            x = 0</span><br><span class="line">            y = CGFloat(index) * h</span><br><span class="line">            view.frame = CGRect(x: x, y: y, width: w, height: h)</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            w = frame.width / CGFloat(subviews.count)</span><br><span class="line">            h = kDockItemHeight</span><br><span class="line">            x = CGFloat(index) * w</span><br><span class="line">            y = frame.height - h</span><br><span class="line">            view.frame = CGRect(x: x, y: y, width: w, height: h)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其它类型的所有子控件都可以用类似的方法进行布局,如此你只需要定义一个view并始之成为某个View的subview,在你定义的view中你可以随意的获取屏幕状态布局子控件了.</p>
+<p>为了在根控制器View的layoutSubviewsr的方法中布局DockView,需要重写控制器的loadView方法,让控制器加载自定义的View. 如果你注意到原生QQZone for iPad的内容显示区域在横竖屏下的变化会发现在横坚屏下内容显示区域宽都是一样的,所以还需要在根控制器View中添加一个容器View以显示内容.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class HomePageView: UIView, UIViewisPortrait &#123;</span><br><span class="line">    private lazy var dockView:DockView = DockView()</span><br><span class="line"></span><br><span class="line">    lazy var contentView: UIView = &#123;</span><br><span class="line">        let contentView = UIView()</span><br><span class="line">        contentView.backgroundColor = UIColor.whiteColor()</span><br><span class="line">        // 作为容器View,子控制器的view将添加到容器view上</span><br><span class="line">        self.addSubview(contentView)</span><br><span class="line">        return contentView</span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">    func isPortrait() -&gt; Bool &#123;</span><br><span class="line">        return frame.width &lt; frame.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override init(frame: CGRect) &#123;</span><br><span class="line">        super.init(frame: frame)</span><br><span class="line">        addSubview(dockView)</span><br><span class="line">        dockView.backgroundColor = globalBackgroudColor</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    required init?(coder aDecoder: NSCoder) &#123;</span><br><span class="line">        fatalError(&quot;init(coder:) has not been implemented&quot;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    override func layoutSubviews() &#123;</span><br><span class="line">        super.layoutSubviews()</span><br><span class="line">        dockView.frame.size.height = frame.height</span><br><span class="line">        dockView.frame.size.width = isPortrait() ? kDockProtraitWidth : kDockLandscapeWidth</span><br><span class="line"></span><br><span class="line">        let x: CGFloat = dockView.frame.width</span><br><span class="line">        let y: CGFloat = 20</span><br><span class="line">        // 无论横竖屏,内容视图的宽都一样</span><br><span class="line">        let w: CGFloat = min(frame.width, frame.height) - kDockProtraitWidth</span><br><span class="line">        let h: CGFloat = frame.height - y</span><br><span class="line"></span><br><span class="line">        contentView.frame = CGRectMake(x, y, w, h)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后由于内容区域不用区分横竖屏,因此内容区域的子视图可以只考虑竖屏的情况,以上可以说得不是很清楚,如果感觉有兴趣可<a href="https://github.com/JMStack/QQZone" target="_blank" rel="external">下载</a>原码参阅.</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上重点仅仅是用代码进行iPad横竖屏适配方法的探讨,这里只是记录了我认为较为合理的方法,当然这种方法可能并不适用所有的布局,毕竟每个App都有自己独特的UI部分.如果觉得这种方法不好欢迎指出,我将虚心请教.如果这个方法对你的业务提供了一点点的灵感希望点个赞,以上完.</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iPad/" rel="tag">#iPad</a>
+          
+            <a href="/tags/代码屏幕适配/" rel="tag">#代码屏幕适配</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/02/微博-微信图片浏览过渡动画的实现/" rel="next" title="微博,微信图片浏览过渡动画的实现">
+                <i class="fa fa-chevron-left"></i> 微博,微信图片浏览过渡动画的实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/05/iPad横竖屏代码适配/"
+           data-title="iPad横竖屏代码适配" data-url="http://jmstack.github.io/2016/03/05/iPad横竖屏代码适配/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="JackMa" />
+          <p class="site-author-name" itemprop="name">JackMa</p>
+          <p class="site-description motion-element" itemprop="description">千年暗室，一灯即明</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JMStack" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/HeyJackMa" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕适配的N种方法"><span class="nav-number">1.</span> <span class="nav-text">屏幕适配的N种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Autoresizing"><span class="nav-number">1.1.</span> <span class="nav-text">Autoresizing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autolayout"><span class="nav-number">1.2.</span> <span class="nav-text">Autolayout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SizeClass"><span class="nav-number">1.3.</span> <span class="nav-text">SizeClass</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码计算坐标"><span class="nav-number">1.4.</span> <span class="nav-text">代码计算坐标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#layoutsubviews的调用时机"><span class="nav-number">2.</span> <span class="nav-text">layoutsubviews的调用时机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何获取当前屏幕方向"><span class="nav-number">3.</span> <span class="nav-text">如何获取当前屏幕方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo预览"><span class="nav-number">4.</span> <span class="nav-text">Demo预览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo分析"><span class="nav-number">5.</span> <span class="nav-text">Demo分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackMa</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jmstack"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
