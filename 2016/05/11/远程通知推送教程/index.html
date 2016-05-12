@@ -1,0 +1,826 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="翻译," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="版权声明 本文翻译自:raywenderlich.com 原文作者: Jack Wu 译者: JMStack
+
+iOS开发者们喜欢想象他的用户们会每时每刻使用他们所开发的APP,但是残酷的事实是他们的用户会有关闭APP来处理其它事情的时候.就像你洗好的衣服总要人去叠吧.
+幸好,推送通知功能可以让开发者与用户建立连接并进行简单的交互即使用户当前并没有使用APP!
+从推送通知功能第一次问世到现在已经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="远程通知推送教程">
+<meta property="og:url" content="http://jmstack.github.io/2016/05/11/远程通知推送教程/index.html">
+<meta property="og:site_name" content="Lemtter">
+<meta property="og:description" content="版权声明 本文翻译自:raywenderlich.com 原文作者: Jack Wu 译者: JMStack
+
+iOS开发者们喜欢想象他的用户们会每时每刻使用他们所开发的APP,但是残酷的事实是他们的用户会有关闭APP来处理其它事情的时候.就像你洗好的衣服总要人去叠吧.
+幸好,推送通知功能可以让开发者与用户建立连接并进行简单的交互即使用户当前并没有使用APP!
+从推送通知功能第一次问世到现在已经">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRun1.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/ChangeBundleID.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/PushNotificaitonCapability.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/blog/%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%E6%95%99%E7%A8%8B/MemberCenter1.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRun2.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/DeviceToken.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/ConfigurablePushNotifications.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/CreateCertificate.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/KeychainCertificate.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/PushNotificationEnabled.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/ExportCertificate.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/SaveP12.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/FirstPush-281x500.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/EditScheme.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/WaitForLaunch.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRunFirstNews.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/NewNews-281x500.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/ViewAction-281x500.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/SafariVC-281x500.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/BackgroundModes.png">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/cat-1136365_1280-768x512.jpg">
+<meta property="og:updated_time" content="2016-05-12T10:31:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="远程通知推送教程">
+<meta name="twitter:description" content="版权声明 本文翻译自:raywenderlich.com 原文作者: Jack Wu 译者: JMStack
+
+iOS开发者们喜欢想象他的用户们会每时每刻使用他们所开发的APP,但是残酷的事实是他们的用户会有关闭APP来处理其它事情的时候.就像你洗好的衣服总要人去叠吧.
+幸好,推送通知功能可以让开发者与用户建立连接并进行简单的交互即使用户当前并没有使用APP!
+从推送通知功能第一次问世到现在已经">
+<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRun1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 远程通知推送教程 | Lemtter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0d743852f614de6854b2866588b4d49e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lemtter</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Easy Man...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                远程通知推送教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-11T13:09:44+08:00" content="2016-05-11">
+              2016-05-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/11/远程通知推送教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/11/远程通知推送教程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><strong>版权声明</strong> 本文翻译自:<a href="https://www.raywenderlich.com/123862/push-notifications-tutorial" target="_blank" rel="external">raywenderlich.com</a> 原文作者: <a href="https://twitter.com/JackTripleU" target="_blank" rel="external">Jack Wu</a> 译者: <a href="http://lemtter.com" target="_blank" rel="external">JMStack</a></p>
+</blockquote>
+<p>iOS开发者们喜欢想象他的用户们会每时每刻使用他们所开发的APP,但是残酷的事实是他们的用户会有关闭APP来处理其它事情的时候.就像你洗好的衣服总要人去叠吧.</p>
+<p>幸好,推送通知功能可以让开发者与用户建立连接并进行简单的交互即使用户当前并没有使用APP!</p>
+<p>从推送通知功能第一次问世到现在已经变得越来越强大.在iOS9上,远程推送可以做到:</p>
+<ul>
+<li>显示短文本</li>
+<li>播放通知提示音</li>
+<li>设置APP图标的角标</li>
+<li>在不打开APP的情况下,允许用户与APP交互</li>
+<li>允许APP在后台静默唤醒来执行任务</li>
+</ul>
+<p>这份远程推送通知教程会告诉你远程推送的工作原理的并让你了解它的一些特性.</p>
+<p>在开始推送测试之前你需要具备以下条件:</p>
+<ul>
+<li><strong>一台iOS设备</strong>.远程推送不能在摸拟器上运行,所以你需要一台真机.</li>
+<li><strong>一个开发者帐号</strong> 从Xcode7开始,在真机上测试APP不再需要加入开发者计划.但是为了配置远程推送,你需要有一个与APP ID对应的推送证书,获得这个证书你需要加开发者计划.</li>
+</ul>
+<a id="more"></a>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>为了接收发送远程推送通知你必须完成以下3个主要的任务:</p>
+<ol>
+<li>App必须正确配置并注册APNS(Apple Push Notification Service),以便所有设置都完成时就能马上接收到通知</li>
+<li>服务端必须向APNS发送一条明确指向一个或多个设备的通知</li>
+<li>App必需接收服务端发送的通知;App可以执行通知包含的任务或者在application的代理(delegate)回调方法内处理用户交互行为.</li>
+</ol>
+<p>任务1和任务3是这份推送通知教程主要关注的内容,因为这两个任务是iOS开发者的工作.</p>
+<p>任务2也会在这份教程中简略的提及,并且多数情况仅仅是为了测试目的.发送一个远程通知是App服务端的工作,并且这部分内部会因为App的不同而不同.大多数App都会使用第三方服务(比如Parse.com或者Google ColoudMessaging)推送通知,其它的App或使用定制化的解决方案或使用比较流行的框架(比如: Houston).</p>
+<p>正式开始之,下载已经准备好的 <strong>WenderCast</strong> <a href="https://cdn5.raywenderlich.com/wp-content/uploads/2016/03/WenderCast-Starter-1.1.zip" target="_blank" rel="external">开始工程</a>.WenderCast是一个让用户获取raywenderlich.com播客节目和时实消息的应用.</p>
+<p>在Xcode中打开WenderCast.xcodeproj简单浏览一下.编绎运行即可查看当前最新播客节目:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRun1.png" alt="BuildAndRun1"><br>这个App的存在的问题是当有新的播客节目可以获取时不能通知到用户.并且也不能显示任何最新的消息.接下来你将用远程推送功能修复这个问题!</p>
+<h1 id="为App配置远程推送功能"><a href="#为App配置远程推送功能" class="headerlink" title="为App配置远程推送功能"></a>为App配置远程推送功能</h1><p>推送通知需要较高的安全性.这点是非常重要的,因为你不会想让其它人给你的用户发送通知.这也就意味着要实现远程推送功能你必需跳过一些坑.</p>
+<h2 id="打开远程推送服务"><a href="#打开远程推送服务" class="headerlink" title="打开远程推送服务"></a>打开远程推送服务</h2><p>第一步是更改App ID.在Xcode中进入 <strong>App Settings -&gt; General</strong> 把 <strong>Bundle Identifier</strong> 改为任意唯一的字符串.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/ChangeBundleID.png" alt="ChangeBundleID"><br>接下来你需要在你的开发者帐号下添加打开了推送通知功能的App ID.幸运的是,Xcode有更简单的方法实现这个步骤.进入 <strong>App Settings -&gt; Capabilities</strong> 把Push Notifications设置为 <strong>On</strong>.<br>在Xcode完成一些下载后,看起应该会是下面的样子<br><img src="http://o6jvfp7kw.bkt.clouddn.com/PushNotificaitonCapability.png" alt="PushNotificaitonCapability"><br>这个步骤背后的操作是: 如果你当前的开发者帐号下没有对应的App ID就会主动创建App ID,并且打开推送通知功能.你可以登陆开发者中心确认是否打开了这个功能:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/blog/%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%E6%95%99%E7%A8%8B/MemberCenter1.png" alt="MemberCenter1"></p>
+<p>如果这个过程中出现问题,可以手动创建App ID或者点击开发者中心 <strong>+</strong> 或 <strong>Edit</strong> 按钮开启推送通知功能.</p>
+<p>以上就是你目前需要的配置.</p>
+<h2 id="注册远程推送"><a href="#注册远程推送" class="headerlink" title="注册远程推送"></a>注册远程推送</h2><p>注册远程推送需要两步.第一步,你必需向用户请求推送通知许可,获得许可之后才能注册远程推送.如果所有步骤进行顺利,系统将会向你提供一个 <strong>device token</strong> ,你可以把它认为是当前设备的”地址”.</p>
+<p>在WenderCast应用中你需要用在应用启动后立即注册远程推送.</p>
+<p>打开AppDelegate.swift,添加以下代码到AppDelegate末尾.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func registerForPushNotifications(application: UIApplication) &#123;</span><br><span class="line">  let notificationSettings = UIUserNotificationSettings(</span><br><span class="line">    forTypes: [.Badge, .Sound, .Alert], categories: nil)</span><br><span class="line">  application.registerUserNotificationSettings(notificationSettings)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个方法创建了一个 <em>UIUserNotificationSettings</em> 实例对象并把它作为参数传给 <em>registerUserNotificationSettings(_:)</em> .</p>
+<p><em>UIUserNotificationSettings</em> 存储你的应用将到用到的通知类型设置.对于UIUserNotificationType的值你可以用下面几个枚举值的任意组合.</p>
+<ul>
+<li>.Badge 允许App在图标上显示角标数字</li>
+<li>.Sound 允许App播放声音</li>
+<li>.Alert 允许App显示文本</li>
+</ul>
+<p><em>UIUserNotificationCategory</em> 是Set类型参数当前暂时传 <em>nil</em>,以允许你指定你的App能够处理的不同类型的通知.当你需要实现可交互的通知时,这样的设置是必需的.后面的部分你将会用到可交互通知.</p>
+<p>在 <em>application(_:didFinishLaunchingWithOptions:launchOptions:):</em> 方法内的第一行调用 <em>registerForPushNotifications(_:)</em> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -&gt; Bool &#123;</span><br><span class="line">  registerForPushNotifications(application)</span><br><span class="line">  //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>编绎运行.当App启动时你会收到一个弹窗请求通知许可:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRun2.png" alt="BuildAndRun2.png"></p>
+<p>点击 <strong>OK</strong> ,现在App可以显示通知了.但是,如果用户拒绝了发送通知的请求该应怎么办?</p>
+<p>当用户接受或拒绝请求许可又或者之前做出过是否允许的选择, <em>UIApplicationDelegate</em> 的一个代理方法将会被调用. 添加以下代码到 <em>AppDelegate</em> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这个方法中,你会接收到另一个 <em>UIUserNotificationSettings</em> 实现对象.这个实例对象与之前你之前所传入的不同.你之前传入的是你所希望的设置,而当前这个是用户当前授权的设置.</p>
+<p>在App每次启动时都调用 <em>registerUserNotificationSettings(_:)</em> 是相当重要的.因为用户在任何时候都有可能在设置应用内改变通知的授权许可. <em>application(_:didRegisterUserNotificationSettings:)</em> 方法会告诉你用户当前给你的App什么样的授权许可.</p>
+<p>现在第一步已经完成,你可以注册远程推送通知了.这一步相当简单,因为你不再需要向用户请求什么许可了.用下面的代码更新 <em>application(_:didRegisterUserNotificationSettings:)</em> 方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) &#123;</span><br><span class="line">  if notificationSettings.types != .None &#123;</span><br><span class="line">    application.registerForRemoteNotifications()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上面的方法中,首先检查当前用户是否允许通知,如果允许直接调用 <em>registerForRemoteNotifications()</em>.</p>
+<p>其次, <em>registerForRemoteNotifications()</em> 的请求注册的返回状态会通过 UIApplicationDelegate协议中的某些方法通知你.</p>
+<p>添加以下代码到 <em>AppDelegate</em> :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) &#123;</span><br><span class="line">  let tokenChars = UnsafePointer&lt;CChar&gt;(deviceToken.bytes)</span><br><span class="line">  var tokenString = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  for i in 0..&lt;deviceToken.length &#123;</span><br><span class="line">    tokenString += String(format: &quot;%02.2hhx&quot;, arguments: [tokenChars[i]])</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  print(&quot;Device Token:&quot;, tokenString)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) &#123;</span><br><span class="line">  print(&quot;Failed to register:&quot;, error)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>就像方法名所暗示的那样,当注册通知成功后系统会调用 <em>application(_:didRegisterForRemoteNotificationsWithDeviceToken:)</em> 方法,否则将会调用 <em>application(_:didFailToRegisterForRemoteNotificationsWithError:).</em> 方法.</p>
+<p>当前 <em>application(_:didRegisterForRemoteNotificationsWithDeviceToken:)</em> 方法的实现看起来难以理解,其实它仅仅只是获取 <em>deviceToken</em> 然后转换成字符串.deviceToken的值就是这个过程得到的结果.它是由APNs服务器提供用来标识当前设备当前App.当发送时推送通知的时候,App用deviceToken作为”地址”传递到当前设备.</p>
+<blockquote>
+<p><strong>注意</strong> 会有很多原因导致注册失败.最常碰到原因是程序运行在模拟器上,或者App ID设置不正确.具体原因打印error值会提供更加详细的信息.</p>
+</blockquote>
+<p>到此,编绎运行.确保你当前运行在真机上,你将会在控制台看到打印出的device token.下面将会是你看到的结果:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/DeviceToken.png" alt="DeviceToken"></p>
+<p>把device token复制到某处保存.</p>
+<p>在正式发送通知之前你还需要一点点配置,所以回到开发者中心.</p>
+<h2 id="创建一个SSL证书和PEM文件"><a href="#创建一个SSL证书和PEM文件" class="headerlink" title="创建一个SSL证书和PEM文件"></a>创建一个SSL证书和PEM文件</h2><p>在开发者中心进入 <strong>Certificates, Identifiers &amp; Profiles -&gt; Identifiers -&gt; App IDs</strong> 找到你应用的App ID.在 <strong>Application Services</strong> 下面 <strong>Push Notifications</strong> 应该为 <strong>Configurable</strong> :<br><img src="http://o6jvfp7kw.bkt.clouddn.com/ConfigurablePushNotifications.png" alt="ConfigurablePushNotifications"><br>点击 <strong>Edit</strong> 滚动到 <strong>Push Notifications</strong> :<br><img src="http://o6jvfp7kw.bkt.clouddn.com/CreateCertificate.png" alt="CreateCertificate"><br>在 <strong>Development SSL Certificate</strong> 栏下,点击 <strong>Create Certificate…</strong> 接下来的步骤就是创建 <strong>CSR</strong> 文件.创建好CSR文件后点击 <strong>continue</strong> 和 <strong>Generate</strong>,这步会用你创建的CSR文件生成证书.最后下载并运行生成好的证书,证书将被添加到你的钥匙串应用中,并与私钥成对.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/KeychainCertificate.png" alt="KeychainCertificate"></p>
+<p>在开发者中心,你的App ID现在推送通知功能在development下应该处于Enable状态.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/PushNotificationEnabled.png" alt="PushNotificationEnabled"></p>
+<p>在关闭钥匙串应用前还有最后一件事,右击你刚才添加的证书,选择 <strong>Export</strong> :<br><img src="http://o6jvfp7kw.bkt.clouddn.com/ExportCertificate.png" alt="ExportCertificate"></p>
+<p>保存在桌面并命名为WenderCastPush.p12.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/SaveP12.png" alt="SaveP12"></p>
+<p>你会被提示要求为你的.p12文件设置密码,你可以选择不输或者输入一个你想设置的密码.这里我用”WenderCastPush”作为密码.接下来你需要输入电脑登陆密码来允许导出p12文件.</p>
+<p>接下来,打开你的终端并执行以下命令来从p12文件生成PEM文件:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd ~/Desktop</span><br><span class="line">$ openssl pkcs12 -in WenderCastPush.p12 -out WenderCastPush.pem -nodes -clcerts</span><br></pre></td></tr></table></figure></p>
+<p>如果你导出p12文件时输入了密码,在这里你必须输入相同的密码.</p>
+<p>到此为止,你已经艰难的跃过了很多坑,这一切都是值得的.接下来你将用你生成的WenderCastPush.pem文件发送第一个通知.</p>
+<h1 id="发送通知"><a href="#发送通知" class="headerlink" title="发送通知"></a>发送通知</h1><p>之前下载的<a href="https://cdn5.raywenderlich.com/wp-content/uploads/2016/03/WenderCast-Starter-1.1.zip" target="_blank" rel="external">开始工程</a>会包含一个WenderCastPush文件;里面包含两个用于发送通知简单脚本.你需要用到的是newspush.php.正如文件名所暗示的,这个脚本将会向你的用户发送一个弹窗通知消息.</p>
+<p>发送推送通知需要和APNS建立SSL连接,SSL连接是用之前创建的证书进行加密.这就是为什么要生成 <strong>WenderCastPush.pem</strong> 文件.重命名 <strong>WenderCastPush.pem</strong> 为 <strong>ck.pem</strong>,并且替换掉当前已经存在于 <strong>WenderCastPush</strong> 文件夹下的 <strong>ck.pem</strong> 文件.</p>
+<p>打开 <strong>newspush.php</strong> 并更新之前接收到的 <strong>$deviceToken</strong> 和导出文件时输入的密码 <strong>$passphrase</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Put your device token here (without spaces):</span><br><span class="line">$deviceToken = &apos;43e798c31a282d129a34d84472bbdd7632562ff0732b58a85a27c5d9fdf59b69&apos;;</span><br><span class="line"></span><br><span class="line">// Put your private key&apos;s passphrase here:</span><br><span class="line">$passphrase = &apos;WenderCastPush&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>打开终端, <strong>cd</strong> 到 <strong>newspush.php</strong> 所在的文件夹,输入:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ush.php &apos;Breaking News&apos; &apos;https://raywenderlich.com&apos;</span><br></pre></td></tr></table></figure></p>
+<p>如果进行顺利,你的终端将会显示:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Connected to APNS</span><br><span class="line">Message successfully delivered</span><br></pre></td></tr></table></figure></p>
+<p>现在,你应该会收到你的第一条通知:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/FirstPush-281x500.png" alt="FirstPush-281x500"></p>
+<blockquote>
+<p><strong>注意</strong> 如果你的App被打开并处于前台运行状态,你将看不到任何东西.通知已经被投送但是App还不会处理这个通知.你只需要简单的关闭App并重新发送通知即可.</p>
+</blockquote>
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><p>也许你会遇到以下问题:</p>
+<p><strong>只能接收到部分通知</strong>:如果你同时发送多个通知,只有部分通知将会被接收,不用担心!这正是我们想要的结果.当发送通知时APNS会为每一个开启了推送通知的设备保持一个高质量服务(Quality of Service)队列.这个队列的大小是1,所以如果你同时发送多个通知,最后一个通知才会被发送.</p>
+<p><strong>连接到APNS出现问题</strong>:出现这个问题的原因可能是你的防火墙阻塞了APNS所使用的端口.所以确保你的防火墙没有阻塞住这些端口.另一个可能的原因是私钥和CSR文件不正确.记住,每一个App ID有一个唯一的CSR和配对的私钥.</p>
+<h1 id="解剖推送通知的基本原理"><a href="#解剖推送通知的基本原理" class="headerlink" title="解剖推送通知的基本原理"></a>解剖推送通知的基本原理</h1><p>在进行任务3之前,需要理解一下你推送的通知,打开 <strong>newspush.php</strong> 文件理解发送一个通知的基本概念应该是怎么样的.</p>
+<p>注意第32-40行,这就是用JSON格式编码的装载体.这就是实际上发送给APNS的东西.在我们当前的例子中,装载体像下面一样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;aps&quot;:</span><br><span class="line">  &#123;</span><br><span class="line">    &quot;alert&quot;: &quot;Breaking News!&quot;,</span><br><span class="line">    &quot;sound&quot;: &quot;default&quot;</span><br><span class="line">    &quot;link_url&quot; : &quot;https://raywenderlich.com,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于一个不懂JSON数据的人来说,用{}括起来的块相当于一个字典类型的数据.</p>
+<p>这个装载体是一个至少包含一项内容的字典,这项内容就是 <strong>aps</strong>, 它本身也是一个字典.在这个例子中”aps”包含”alert”,”sound”和”link_url”等字段.当接收到一个通知,就会显示一个包含”Breaking News!”文本的提醒视图,并且有标准的提醒音效.</p>
+<p>“link_url”实际上是一个自定义的字段.你可以添加类似的自定义字段到装载体中,并且它会被投送到你的应用.因为你并没有在应用中处理这个字段,所以当前接收到这个键值对会什么都不做.</p>
+<p>你可以在aps字典中添加以下5个键(key):</p>
+<ul>
+<li><p>alert. 这个字段可以是一个字符串,就像当前的例子.或是是一个字典.如果是一个字典,可以是本地化的文本或者通知的其它部分.查看<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/TheNotificationPayload.html#//apple_ref/doc/uid/TP40008194-CH107-SW1" target="_blank" rel="external">苹果文档</a>所支持的key.</p>
+</li>
+<li><p>badge. 这是一个将被显示在应用图标上的数字.你可以设置这个键为0来清除角标.</p>
+</li>
+<li><p>sound. 通过设置这个建,你可以播放存放在App本地定制的通知提示音来取代系统默认的通知提示音.定制的通知提示音必须在30秒以内并且还有一些其它的限制,你可以查看<a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/IPhoneOSClientImp.html#//apple_ref/doc/uid/TP40008194-CH103-SW6" target="_blank" rel="external">苹果文档</a>了解更详细信息.</p>
+</li>
+<li><p>content-available.设置这个键为1,当前通知会变成静默通知.这个部分会在这份教程的后面部分探索.</p>
+</li>
+<li><p>category. 这个键定义了通知的分类,用于显示定制通知所包含的交互行为.同样,接下来会探索这部分的内容.</p>
+</li>
+</ul>
+<p>除此之外,你可以添加任意你想要添加的定制化数据,只要装载体不超过4096个字节.</p>
+<p>如果你玩够了推送通知,接下来我们进入到下一个章节.</p>
+<h1 id="处理接收到的通知"><a href="#处理接收到的通知" class="headerlink" title="处理接收到的通知"></a>处理接收到的通知</h1><p>在这个章节,你将会学习当App接收到通知后或者用户点击了通知应该如何执行什么样的操作.</p>
+<h2 id="当你接收到一个通知后会发生什么"><a href="#当你接收到一个通知后会发生什么" class="headerlink" title="当你接收到一个通知后会发生什么"></a>当你接收到一个通知后会发生什么</h2><p>当你的App接收到一个通知, <em>UIApplicationDelegate</em> 的一个方法将会被调用.<br>需要根据接到收通知时App所处的状态的进行不同的处理.</p>
+<ul>
+<li><p>如果你的应用当前不在运行,并且用户通过点击推送通知启动应用,通知内容会通过 <em>application(_:didFinishLaunchingWithOptions:)</em> 方法的 <em>launchOptions</em> 参数进行传递.</p>
+</li>
+<li><p>如果你应用当前正运行在前台,推送通知将不会被显示.但是 <em>application(_:didReceiveRemoteNotification:)</em> 会被立即调用.</p>
+</li>
+<li><p>如果你的应用正在运行,或者被挂起在后台,并且用户通过点击通知使应用进入前台 <em>application(_:didReceiveRemoteNotification:)</em> 方法会被调用.</p>
+</li>
+</ul>
+<p>在第一种情况下, WenderCast将到创建一个新的section,并直接打开以显示到这个新建section.添加以下代码到 <em>application(_:didFinishLaunchingWithOptions:)</em> 的末尾return语句之前.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// Check if launched from notification</span><br><span class="line">// 1</span><br><span class="line">if let notification = launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] as? [String: AnyObject] &#123;</span><br><span class="line">  // 2</span><br><span class="line">  let aps = notification[&quot;aps&quot;] as! [String: AnyObject]</span><br><span class="line">  createNewNewsItem(aps)</span><br><span class="line">  // 3</span><br><span class="line">  (window?.rootViewController as? UITabBarController)?.selectedIndex = 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码做了以下3件事:</p>
+<ol>
+<li><p>检查 <em>UIApplicationLaunchOptionsRemoteNotificationKey</em> 键对应的值是否存在,如果存在,这个值应该就是你发送的通知装载体.</p>
+</li>
+<li><p>如果存在,获取 <em>aps</em> 对应字典并传给 <em>createNewNewsItem(_:)</em> 方法,这个方法根据接收的字典创建一个 <em>NewItem</em>,并刷新表格.</p>
+</li>
+<li><p>改变tab控制器当前选中的tab索引值为1,也就是直接显示新闻控制器视图.</p>
+</li>
+</ol>
+<p>为了测试这部分代码,你需要编辑WenderCast的scheme:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/EditScheme.png" alt="EditScheme"></p>
+<p>在 <strong>Run -&gt; Info</strong> 下选择 <strong>Wait for executable to be launched</strong>:<br><img src="http://o6jvfp7kw.bkt.clouddn.com/WaitForLaunch.png" alt="WaitForLaunch"></p>
+<p>这个选项会使调试器等待应用程序安装直到应用程序第一次被启动。</p>
+<p>编绎运行,完成安装后,发送一些新的动态.点击通知以启动App,启动之后App会显示一些新消息.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/BuildAndRunFirstNews.png" alt="BuildAndRunFirstNews"></p>
+<blockquote>
+<p><strong>注意</strong> 如果你突然接收不到通知,最有可能的原因是device token被改了.如果你删除应用再重新安装就有可能出现这种情况. 确保你的device token是正确的.</p>
+</blockquote>
+<p>为了处理另外两种情况,添加以下代码到 <em>AppDelegate</em>:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) &#123;</span><br><span class="line">  let aps = userInfo[&quot;aps&quot;] as! [String: AnyObject]</span><br><span class="line">  createNewNewsItem(aps)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个方法直接创建了一个新的 <em>NewsItem</em>. 现在你可以把scheme设置回自动启动App.</p>
+<p>编绎运行.保持App运行在前台,并选中新闻页.发送一个通知,你可以看到消息奇迹般的显示在视线内.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/NewNews-281x500.png" alt="NewNews-281x500"></p>
+<p>就是这样!你的App现在可以处理基本的推送消息.</p>
+<p>一些需要注意的事情:很多情况推送通知可能会被遗漏.对于WenderCast应用来说是没有问题的,因为装满消自己的列表对这个应用来说并不是那么重要,但是一般来讲你不应该把推送通知做为传递内容的唯一方式.作为备选项,推送通知应该仅仅只是指示当前有新的内容可以获取并让App从服务器下载这些新的内容.WenderCast应用在这方有一些局限性,因为它并没有合适的服务端.</p>
+<h1 id="可交互的通知"><a href="#可交互的通知" class="headerlink" title="可交互的通知"></a>可交互的通知</h1><p>可交互的通知允许你添加定制化的按钮在通知上.你也许注意到邮件通知或者Twitter消息通知有一个让你回复或者点赞的部位.</p>
+<p>可交互的通知是你通过注册通知时设置 <strong>categories</strong> 定义的.每一个通知分类都可以有多个预先自定义的交互.</p>
+<p>一旦完成注册,就可以发送这个分类的通知.当接收到通知相应的交互就可以被用户获取.</p>
+<p>对于 <strong>WenderCast</strong> 应用,你将定义一个自定义”View”动作的”News”分类,自定义”View”允许用户选择查看,如果用户选择就会在App中直接显示对应的消息详细文章.</p>
+<p>添加以下代码到 <em>registerForPushNotifications(_:):</em> 的开头.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let viewAction = UIMutableUserNotificationAction()</span><br><span class="line">viewAction.identifier = &quot;VIEW_IDENTIFIER&quot;</span><br><span class="line">viewAction.title = &quot;View&quot;</span><br><span class="line">viewAction.activationMode = .Foreground</span><br></pre></td></tr></table></figure></p>
+<p>这段代码创建了一个按钮标题名为”View”的新交互通知,当交互通知被用户触发时打开App并让其进入前台.这个交互动作的标识符是 <em>VIEW_IDENTIFIER</em> ,这个标识符被用于区分同一通知的不同交互动作.</p>
+<p>添加以下人码片段至前面代码之后:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let newsCategory = UIMutableUserNotificationCategory()</span><br><span class="line">newsCategory.identifier = &quot;NEWS_CATEGORY&quot;</span><br><span class="line">newsCategory.setActions([viewAction], forContext: .Default)</span><br></pre></td></tr></table></figure></p>
+<p>这段代码定义了一个新通知分类,设置交互动作为之前定义的”View”动作,设置标识符为” NEWS_CATEGORY”,这个标识符你是装载体要包含的内容以用其指示当前通知属于哪个分类.</p>
+<p>最后,通过以下代码,把新建分类传递给UIUserNotificationSettings构造方法.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: [newsCategory])</span><br></pre></td></tr></table></figure></p>
+<p>编绎运行,应用会注册新通知设定.按Home键来退出当前应用,以使推送通知能够显示.</p>
+<p>在你再次运行 <em>newspush.php</em> 之前,首先对指定的分类做一个改动.打开 <em>newspush.php</em> 修改通知装载体使它包含通知的分类标识符:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$body[&apos;aps&apos;] = array(</span><br><span class="line">  &apos;alert&apos; =&gt; $message,</span><br><span class="line">  &apos;sound&apos; =&gt; &apos;default&apos;,</span><br><span class="line">  &apos;link_url&apos; =&gt; $url,</span><br><span class="line">  &apos;category&apos; =&gt; &apos;NEWS_CATEGORY&apos;,</span><br><span class="line">  );</span><br></pre></td></tr></table></figure></p>
+<p>保存并关闭newspush.php,然后运行以发送通知.如果一切进展顺利,你可以下拉并轻扫显示的通知你会看到View按钮被显示.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/ViewAction-281x500.png" alt="ViewAction-281x500"><br>非常好,点击”View”按钮将启动WenderCast但不会做任何事情.为了获取通知装载体显示新的内容项,你需要在代理方法中做更多的操作.</p>
+<h2 id="处理通知交互动作事件"><a href="#处理通知交互动作事件" class="headerlink" title="处理通知交互动作事件"></a>处理通知交互动作事件</h2><p>回到 <strong>AppDelegate.swift</strong>,添加另一个方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], completionHandler: () -&gt; Void) &#123;</span><br><span class="line">  // 1</span><br><span class="line">  let aps = userInfo[&quot;aps&quot;] as! [String: AnyObject]</span><br><span class="line"></span><br><span class="line">  // 2</span><br><span class="line">  if let newsItem = createNewNewsItem(aps) &#123;</span><br><span class="line">    (window?.rootViewController as? UITabBarController)?.selectedIndex = 1</span><br><span class="line"></span><br><span class="line">    // 3</span><br><span class="line">    if identifier == &quot;VIEW_IDENTIFIER&quot;, let url = NSURL(string: newsItem.link) &#123;</span><br><span class="line">      let safari = SFSafariViewController(URL: url)</span><br><span class="line">      window?.rootViewController?.presentViewController(safari, animated: true, completion: nil)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 4</span><br><span class="line">  completionHandler()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当用户通过通知的交互动作打开应用时这个方法将会被调用.这看来起好像做了很多事,但是实际上没有多少新的东西.这段代码做了以下事情:</p>
+<ul>
+<li>获取 <em>aps</em> 字典</li>
+<li>根据获取到的字典创建 <em>NewItem</em> 并跳到新闻页.</li>
+<li>检查以 <em>identifier</em> 为参数传进来的交互动作的标识符.如果View交互动作的标识符和链接有效则用 <em>SFSafariViewController</em> 显示这个链接内容.</li>
+<li>在处理完用户交互动用之后调用系统传递给你的 <em>completionHandler</em> 回调.</li>
+</ul>
+<p>编绎运行,退出App,发送通知.但请确保下面的URL中有效的:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php newspush.php &apos;New Posts!&apos; &apos;https://raywenderlich.com&apos;</span><br></pre></td></tr></table></figure></p>
+<p>点击通知的交互动作,在WenderCast应用启动后会立即展示Safari控制器.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/SafariVC-281x500.png" alt="SafariVC-281x500"></p>
+<p>恭喜,你刚刚已经完成了可交互通知的实现!尝试多发送几次通知,并用不同的方法打开通知观察通知的展现行为.</p>
+<h1 id="静默推送通知"><a href="#静默推送通知" class="headerlink" title="静默推送通知"></a>静默推送通知</h1><p>静默推送通知可以静默方式的唤醒你的App并让它在后台执行任务.WenderCast可以利用这个特性悄悄地刷新播客列表.</p>
+<p>正如你所想象的,配合合适的服务端这个功能会非常有用.你不需要不断的主动获取数据,当有数据可获取时仅仅只需要发送一个静默通知.</p>
+<p>开始之前进入 <strong>App Settings -&gt; Capabilites</strong> 并打开 WenderCast的 <strong>Background Modes</strong>. 检查最后一个选项, <strong>Remote Notifications</strong> 是否勾选.<br><img src="http://o6jvfp7kw.bkt.clouddn.com/BackgroundModes.png" alt="BackgroundModes"></p>
+<p>现在你的App接收到某个静默通知就可以在后台唤醒.</p>
+<p>在AppDelegate内,用下面更强大的版本替换 <em>application(_:didReceiveRemoteNotification:)</em> 方法:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -&gt; Void) &#123;</span><br><span class="line">  let aps = userInfo[&quot;aps&quot;] as! [String: AnyObject]</span><br><span class="line"></span><br><span class="line">  // 1</span><br><span class="line">  if (aps[&quot;content-available&quot;] as? NSString)?.integerValue == 1 &#123;</span><br><span class="line">    // Refresh Podcast</span><br><span class="line">    // 2</span><br><span class="line">    let podcastStore = PodcastStore.sharedStore</span><br><span class="line">    podcastStore.refreshItems &#123; didLoadNewItems in</span><br><span class="line">      // 3</span><br><span class="line">      completionHandler(didLoadNewItems ? .NewData : .NoData)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else  &#123;</span><br><span class="line">    // News</span><br><span class="line">    // 4</span><br><span class="line">    createNewNewsItem(aps)</span><br><span class="line">    completionHandler(.NewData)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码:</p>
+<ol>
+<li>检查 <em>content-available</em> 是否为1,以确定是否是静默推送.</li>
+<li>刷新播客列表,因为需要访问网络所以刷新列表是异步的.</li>
+<li>当刷新完列表,调用 <em>completionHandler</em> 回调方法,让系统知道数据是否已经下载.</li>
+<li>如果不是静默通知,假定它是消息并创建一个新的消息项.</li>
+</ol>
+<p>必需要确保 <em>completionHandler(_:)</em> 方法被调用并传递真实的是否获取到数据的结果.系统会根据回调计算耗电量和App在后台的时间,系统会根据需要调节App的耗电量以及在后台的时间.</p>
+<p>以上就是这段代码所做的事.现在你可以用 <em>contentpush.php</em> 给你的应用发送一个静默通知.请务必确认以下设置脚本的正确性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Put your device token here (without spaces):</span><br><span class="line">$deviceToken = &apos;43e798c31a282d129a34d84472bbdd7632562ff0732b58a85a27c5d9fdf59b69&apos;;</span><br><span class="line"></span><br><span class="line">// Put your private key&apos;s passphrase here:</span><br><span class="line">$passphrase = &apos;WenderCastPush&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>在终端直接运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php contentpush.php</span><br></pre></td></tr></table></figure></p>
+<p>如果一切顺利,什么事都不会发生.为了看到这段代码的运行结果,与之前设置的一样结果必须把scheme设置为”Wait for executable to be launched”并在 <em>application(_:didReceiveRemoteNotification:fetchCompletionHandler:)</em> 方法旁边打上断点,以确认这个方法会被调用.</p>
+<h1 id="路在何方"><a href="#路在何方" class="headerlink" title="路在何方?"></a>路在何方?</h1><p>恭喜你已经完成了这份推送通知教程的内容并且WenderCast应用也有全部的推送功能!</p>
+<p>你可以在<a href="https://cdn2.raywenderlich.com/wp-content/uploads/2016/03/WenderCast-Final-1.1.zip" target="_blank" rel="external">这里</a>下载完整的工程.记住为了能让工程正常运行你仍然需要更改Bundle ID和证书.</p>
+<p>推送通知功能对于现在的App已经是一个不可或缺的部分,但如果你发送的通知太频繁用户仍然会调整你的通知请求许可.对于一个深思熟虑的设计,推送通知会让你的应用保持足够的用户粘性!</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/cat-1136365_1280-768x512.jpg" alt="cat-1136365_1280-768x512"></p>
+<pre><code>*这只猫接收到&quot;推送通知&quot;后就知道它的晚餐已经准备好了*
+</code></pre><hr>
+<p>我希望你能喜欢这份推送教程.如果你有任何问题,你可以在下面的评论中随意提问.</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/翻译/" rel="tag">#翻译</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/05/iPad横竖屏代码适配/" rel="next" title="iPad横竖屏代码适配">
+                <i class="fa fa-chevron-left"></i> iPad横竖屏代码适配
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/11/远程通知推送教程/"
+           data-title="远程通知推送教程" data-url="http://jmstack.github.io/2016/05/11/远程通知推送教程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="JackMa" />
+          <p class="site-author-name" itemprop="name">JackMa</p>
+          <p class="site-description motion-element" itemprop="description">千年暗室，一灯即明</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JMStack" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/HeyJackMa" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开始"><span class="nav-number">1.</span> <span class="nav-text">开始</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为App配置远程推送功能"><span class="nav-number">2.</span> <span class="nav-text">为App配置远程推送功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#打开远程推送服务"><span class="nav-number">2.1.</span> <span class="nav-text">打开远程推送服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册远程推送"><span class="nav-number">2.2.</span> <span class="nav-text">注册远程推送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建一个SSL证书和PEM文件"><span class="nav-number">2.3.</span> <span class="nav-text">创建一个SSL证书和PEM文件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#发送通知"><span class="nav-number">3.</span> <span class="nav-text">发送通知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题"><span class="nav-number">3.1.</span> <span class="nav-text">常见问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解剖推送通知的基本原理"><span class="nav-number">4.</span> <span class="nav-text">解剖推送通知的基本原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#处理接收到的通知"><span class="nav-number">5.</span> <span class="nav-text">处理接收到的通知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当你接收到一个通知后会发生什么"><span class="nav-number">5.1.</span> <span class="nav-text">当你接收到一个通知后会发生什么</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可交互的通知"><span class="nav-number">6.</span> <span class="nav-text">可交互的通知</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#处理通知交互动作事件"><span class="nav-number">6.1.</span> <span class="nav-text">处理通知交互动作事件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#静默推送通知"><span class="nav-number">7.</span> <span class="nav-text">静默推送通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#路在何方"><span class="nav-number">8.</span> <span class="nav-text">路在何方?</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JackMa</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jmstack"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
