@@ -5,9 +5,9 @@
     
     <entry>
       <title><![CDATA[远程通知推送教程]]></title>
-      <url>http://jmstack.github.io/2016/05/11/%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%E6%95%99%E7%A8%8B/</url>
+      <url>http://lemtter.com/2016/05/11/%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<blockquote>
-<p><strong>版权声明</strong> 本文翻译自:<a href="https://www.raywenderlich.com/123862/push-notifications-tutorial" target="_blank" rel="external">raywenderlich.com</a> 原文作者: <a href="https://twitter.com/JackTripleU" target="_blank" rel="external">Jack Wu</a> 译者: <a href="http://lemtter.com" target="_blank" rel="external">JMStack</a> 转载请说明原文及译文出处.</p>
+<p><strong>版权声明</strong> 本文翻译自:<a href="https://www.raywenderlich.com/123862/push-notifications-tutorial" target="_blank" rel="external">raywenderlich.com</a> 原文作者: <a href="https://twitter.com/JackTripleU" target="_blank" rel="external">Jack Wu</a> 译者: <a href="http://lemtter.com">JMStack</a> 转载请说明原文及译文出处.</p>
 </blockquote>
 <p>iOS开发者们喜欢想象他的用户们会每时每刻使用他们所开发的APP,但是残酷的事实是他们的用户会有关闭APP来处理其它事情的时候.就像你洗好的衣服总要人去叠吧.</p>
 <p>幸好,推送通知功能可以让开发者与用户建立连接并进行简单的交互即使用户当前并没有使用APP!</p>
@@ -180,7 +180,7 @@
 <p>以上就是这段代码所做的事.现在你可以用 <em>contentpush.php</em> 给你的应用发送一个静默通知.请务必确认以下设置脚本的正确性:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Put your device token here (without spaces):</span><br><span class="line">$deviceToken = &apos;43e798c31a282d129a34d84472bbdd7632562ff0732b58a85a27c5d9fdf59b69&apos;;</span><br><span class="line"></span><br><span class="line">// Put your private key&apos;s passphrase here:</span><br><span class="line">$passphrase = &apos;WenderCastPush&apos;;</span><br></pre></td></tr></table></figure></p>
 <p>在终端直接运行:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php contentpush.php</span><br></pre></td></tr></table></figure></p>
 <p>如果一切顺利,什么事都不会发生.为了看到这段代码的运行结果,与之前设置的一样结果必须把scheme设置为”Wait for executable to be launched”并在 <em>application(_:didReceiveRemoteNotification:fetchCompletionHandler:)</em> 方法旁边打上断点,以确认这个方法会被调用.</p>
-<h1 id="路在何方"><a href="#路在何方" class="headerlink" title="路在何方?"></a>路在何方?</h1><p>恭喜你已经完成了这份推送通知教程的内容并且WenderCast应用也有全部的推送功能!</p>
+<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>恭喜你已经完成了这份推送通知教程的内容并且WenderCast应用也有全部的推送功能!</p>
 <p>你可以在<a href="https://cdn2.raywenderlich.com/wp-content/uploads/2016/03/WenderCast-Final-1.1.zip" target="_blank" rel="external">这里</a>下载完整的工程.记住为了能让工程正常运行你仍然需要更改Bundle ID和证书.</p>
 <p>推送通知功能对于现在的App已经是一个不可或缺的部分,但如果你发送的通知太频繁用户仍然会调整你的通知请求许可.对于一个深思熟虑的设计,推送通知会让你的应用保持足够的用户粘性!</p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/cat-1136365_1280-768x512.jpg" alt="cat-1136365_1280-768x512"></p>
@@ -190,7 +190,7 @@
     
     <entry>
       <title><![CDATA[iPad横竖屏代码适配]]></title>
-      <url>http://jmstack.github.io/2016/03/05/iPad%E6%A8%AA%E7%AB%96%E5%B1%8F%E4%BB%A3%E7%A0%81%E9%80%82%E9%85%8D/</url>
+      <url>http://lemtter.com/2016/03/05/iPad%E6%A8%AA%E7%AB%96%E5%B1%8F%E4%BB%A3%E7%A0%81%E9%80%82%E9%85%8D/</url>
       <content type="html"><![CDATA[<p>你可能非常了解用不同的方式去适配不同尺寸的iPhone屏幕,在适配iPhone屏幕时你需要考虑的只是屏幕大小变化带来的UI元素间隔的变化,但是在iPad上主要针对的是横竖屏下完全不同的UI元素的布局,在这种情况下要考虑的就不仅仅是元素之间间隔这种问题了,除了要确保UI元素在这两种模式下的正确显示还要兼顾屏幕旋转的过渡动画.下图是QQZone For iPad 在横竖屏下的布局,可以看到横竖屏下菜单栏的布局方式差别很大.</p>
 <p>QQZone for iPad <a href="https://github.com/JMStack/QQZone" target="_blank" rel="external">GitHub地址</a><br><a id="more"></a></p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E6%A8%AA%E5%B1%8F.PNG" alt="QQZone for iPad 竖屏"><br><img src="http://o6jvfp7kw.bkt.clouddn.com/QQZone%E7%AB%96%E5%B1%8F.PNG" alt="QQZone for iPad 横屏"></p>
@@ -244,7 +244,7 @@
     
     <entry>
       <title><![CDATA[微博,微信图片浏览过渡动画的实现]]></title>
-      <url>http://jmstack.github.io/2016/02/02/%E5%BE%AE%E5%8D%9A-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
+      <url>http://lemtter.com/2016/02/02/%E5%BE%AE%E5%8D%9A-%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87%E6%B5%8F%E8%A7%88%E8%BF%87%E6%B8%A1%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
       <content type="html"><![CDATA[<p>大家在平常用微信,微博的过程中肯定(对,就是肯定)都有查看过朋友圈和微博所发布的照片,当点击九宫格的某一图片时图片会慢慢的放大并进入全屏,左右滑动查看另一张.轻点图片又会以动画的方式慢慢缩小回到滑动之后对应的图片.说了这么多估计你还是不知道我在讲什么鬼,一张动图胜过千言万语.毕竟语言这东西真不是码农的特长…</p>
 <p><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E5%8D%9A%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%9B%BE.gif" alt="微博九宫格"><br><a id="more"></a><br><img src="http://o6jvfp7kw.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E4%B9%9D%E5%AE%AB%E6%A0%BC.gif" alt="微信九宫格"></p>
 <p>上面两张gif点开时的动画不是很明显,你可以在真机上查看更真实效果.接下来我会通过一个Demo来介绍实现这种效果的具体思路,如果你有更好的思路,请求赐教</p>
