@@ -80,31 +80,28 @@
 
 
 
-<meta name="description" content="Syntax And Notes快速参考手册Objective-C Cheat Sheet and Quick Reference
-旧数组方法
+<meta name="description" content="Syntax And Notes旧数组方法
 在OC中数组除了可以用下标访问还可以用ObjectAtIndex:方法来访问,同样的创建数组也可以用旧方法arrayWithObjects:来访问。
 
 Demo Code
-1234/*创建数组需以nil作为结束标记*/NSArray *anyArray =">
+1234/*创建数组需以nil作为结束标记*/NSArray *anyArray = [NSArray arrayWithObjects:objectOne, ObjectTwo, n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C学习小记">
-<meta property="og:url" content="http://lemtter.com/2016/06/05/Objective-C学习小记/index.html">
+<meta property="og:url" content="http://lemtter.com/2014/07/02/Objective-C学习小记/index.html">
 <meta property="og:site_name" content="Lemtter">
-<meta property="og:description" content="Syntax And Notes快速参考手册Objective-C Cheat Sheet and Quick Reference
-旧数组方法
+<meta property="og:description" content="Syntax And Notes旧数组方法
 在OC中数组除了可以用下标访问还可以用ObjectAtIndex:方法来访问,同样的创建数组也可以用旧方法arrayWithObjects:来访问。
 
 Demo Code
-1234/*创建数组需以nil作为结束标记*/NSArray *anyArray =">
-<meta property="og:updated_time" content="2016-06-05T13:28:33.000Z">
+1234/*创建数组需以nil作为结束标记*/NSArray *anyArray = [NSArray arrayWithObjects:objectOne, ObjectTwo, n">
+<meta property="og:updated_time" content="2016-06-05T14:42:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C学习小记">
-<meta name="twitter:description" content="Syntax And Notes快速参考手册Objective-C Cheat Sheet and Quick Reference
-旧数组方法
+<meta name="twitter:description" content="Syntax And Notes旧数组方法
 在OC中数组除了可以用下标访问还可以用ObjectAtIndex:方法来访问,同样的创建数组也可以用旧方法arrayWithObjects:来访问。
 
 Demo Code
-1234/*创建数组需以nil作为结束标记*/NSArray *anyArray =">
+1234/*创建数组需以nil作为结束标记*/NSArray *anyArray = [NSArray arrayWithObjects:objectOne, ObjectTwo, n">
 
 
 
@@ -297,8 +294,8 @@ Demo Code
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-05T20:54:07+08:00" content="2016-06-05">
-              2016-06-05
+            <time itemprop="dateCreated" datetime="2014-07-02T18:54:07+08:00" content="2014-07-02">
+              2014-07-02
             </time>
           </span>
 
@@ -308,8 +305,8 @@ Demo Code
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/05/Objective-C学习小记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/05/Objective-C学习小记/" itemprop="commentsCount"></span>
+                <a href="/2014/07/02/Objective-C学习小记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/02/Objective-C学习小记/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -319,7 +316,7 @@ Demo Code
 
           
           
-             <span id="/2016/06/05/Objective-C学习小记/" class="leancloud_visitors" data-flag-title="Objective-C学习小记">
+             <span id="/2014/07/02/Objective-C学习小记/" class="leancloud_visitors" data-flag-title="Objective-C学习小记">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,8 +338,7 @@ Demo Code
       
 
       
-        <h2 id="Syntax-And-Notes"><a href="#Syntax-And-Notes" class="headerlink" title="Syntax And Notes"></a>Syntax And Notes</h2><h2 id="快速参考手册"><a href="#快速参考手册" class="headerlink" title="快速参考手册"></a>快速参考手册</h2><p><a href="./Objective-C Cheat Sheet and Quick Reference.pdf">Objective-C Cheat Sheet and Quick Reference</a></p>
-<h3 id="旧数组方法"><a href="#旧数组方法" class="headerlink" title="旧数组方法"></a>旧数组方法</h3><ul>
+        <h2 id="Syntax-And-Notes"><a href="#Syntax-And-Notes" class="headerlink" title="Syntax And Notes"></a>Syntax And Notes</h2><h3 id="旧数组方法"><a href="#旧数组方法" class="headerlink" title="旧数组方法"></a>旧数组方法</h3><ul>
 <li>在OC中数组除了可以用下标访问还可以用ObjectAtIndex:方法来访问,同样的创建数组也可以用旧方法arrayWithObjects:来访问。</li>
 </ul>
 <p><em>Demo Code</em></p>
@@ -350,6 +346,7 @@ Demo Code
 <ul>
 <li>创建数组可以向对象发送消息，也可以用字面量语法创建，但要注意用字面量创建数组不可包含nil对象不然会抛出异常。用发送消息的方式创建数组时会在遇到第一个nil时结束</li>
 </ul>
+<a id="more"></a>
 <p><em>Demo Code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">id objectOne = @&quot;xx&quot;;</span><br><span class="line">id objectTwo = nil;</span><br><span class="line">id objectThree = @&quot;oo&quot;;</span><br><span class="line"></span><br><span class="line">/*实际上anyArray所指的数组只包括objectOne，arrayWithObjects:会对传入的对象作检查,发现nil会认为数组创建到止结束*/</span><br><span class="line">NSArray *anyArray = [NSArray arrayWithObjects:objectOne, objectTwo, objectThree, nil];</span><br><span class="line">//用字面量创建数组会抛出异常，因为对象中不可包含nil</span><br><span class="line">NSArray *otherArray = @[objectOne, objectTwo, objectThree];</span><br></pre></td></tr></table></figure>
 <h3 id="旧Dictionary方法"><a href="#旧Dictionary方法" class="headerlink" title="旧Dictionary方法"></a>旧Dictionary方法</h3><p>在OC引入下标前，使用setObject:forKey:方法来替代方括号来对’键－值’进行访问。字典是无序集合</p>
@@ -450,13 +447,13 @@ Demo Code
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/05/Xcode调试巧/" rel="next" title="Xcode调试巧">
-                <i class="fa fa-chevron-left"></i> Xcode调试巧
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/06/05/iOS数据存储方式总结/" rel="prev" title="iOS数据存储方式总结">
+                iOS数据存储方式总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -482,8 +479,8 @@ Demo Code
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/05/Objective-C学习小记/"
-           data-title="Objective-C学习小记" data-url="http://lemtter.com/2016/06/05/Objective-C学习小记/">
+      <div class="ds-thread" data-thread-key="2014/07/02/Objective-C学习小记/"
+           data-title="Objective-C学习小记" data-url="http://lemtter.com/2014/07/02/Objective-C学习小记/">
       </div>
     
   </div>
@@ -587,7 +584,7 @@ Demo Code
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax-And-Notes"><span class="nav-number">1.</span> <span class="nav-text">Syntax And Notes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速参考手册"><span class="nav-number">2.</span> <span class="nav-text">快速参考手册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧数组方法"><span class="nav-number">2.1.</span> <span class="nav-text">旧数组方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旧Dictionary方法"><span class="nav-number">2.2.</span> <span class="nav-text">旧Dictionary方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可修改的对象（NSArray、NSString、NSData…）"><span class="nav-number">2.3.</span> <span class="nav-text">不可修改的对象（NSArray、NSString、NSData…）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">2.4.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">2.5.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">2.6.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instancetype-和-id-区别"><span class="nav-number">2.7.</span> <span class="nav-text">instancetype 和 id 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法"><span class="nav-number">2.8.</span> <span class="nav-text">类方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-和-synthesize"><span class="nav-number">2.9.</span> <span class="nav-text">@property 和 @synthesize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-对象"><span class="nav-number">2.10.</span> <span class="nav-text">Block 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assign-VS-retain-and-copy"><span class="nav-number">2.11.</span> <span class="nav-text">assign VS retain and copy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#assingn"><span class="nav-number">2.11.1.</span> <span class="nav-text">assingn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#retain"><span class="nav-number">2.11.2.</span> <span class="nav-text">retain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copy"><span class="nav-number">2.11.3.</span> <span class="nav-text">copy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KVC-and-KVO"><span class="nav-number">2.12.</span> <span class="nav-text">KVC and KVO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPN-邀请链接"><span class="nav-number">3.</span> <span class="nav-text">VPN 邀请链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例"><span class="nav-number">4.</span> <span class="nav-text">单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义的copy方法"><span class="nav-number">5.</span> <span class="nav-text">自定义的copy方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Syntax-And-Notes"><span class="nav-number">1.</span> <span class="nav-text">Syntax And Notes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#旧数组方法"><span class="nav-number">1.1.</span> <span class="nav-text">旧数组方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旧Dictionary方法"><span class="nav-number">1.2.</span> <span class="nav-text">旧Dictionary方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可修改的对象（NSArray、NSString、NSData…）"><span class="nav-number">1.3.</span> <span class="nav-text">不可修改的对象（NSArray、NSString、NSData…）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">1.4.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类"><span class="nav-number">1.5.</span> <span class="nav-text">类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">1.6.</span> <span class="nav-text">分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instancetype-和-id-区别"><span class="nav-number">1.7.</span> <span class="nav-text">instancetype 和 id 区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法"><span class="nav-number">1.8.</span> <span class="nav-text">类方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#property-和-synthesize"><span class="nav-number">1.9.</span> <span class="nav-text">@property 和 @synthesize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block-对象"><span class="nav-number">1.10.</span> <span class="nav-text">Block 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#assign-VS-retain-and-copy"><span class="nav-number">1.11.</span> <span class="nav-text">assign VS retain and copy</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#assingn"><span class="nav-number">1.11.1.</span> <span class="nav-text">assingn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#retain"><span class="nav-number">1.11.2.</span> <span class="nav-text">retain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#copy"><span class="nav-number">1.11.3.</span> <span class="nav-text">copy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#KVC-and-KVO"><span class="nav-number">1.12.</span> <span class="nav-text">KVC and KVO</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPN-邀请链接"><span class="nav-number">2.</span> <span class="nav-text">VPN 邀请链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单例"><span class="nav-number">3.</span> <span class="nav-text">单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义的copy方法"><span class="nav-number">4.</span> <span class="nav-text">自定义的copy方法</span></a></li></ol></div>
             
           </div>
         </section>
