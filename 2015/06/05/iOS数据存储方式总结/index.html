@@ -92,7 +92,7 @@
 既然是要存储数据,就得有数据存储的路径.在 iOS中获取文路径有固定的两种方法,由于 iOS沙盒机制的存在每个App只能访问到自己所属的几个文件路径.所以在正式介绍存储数据方式之前先了解沙盒路径,以及如何获">
 <meta property="og:image" content="http://lemtter.com/./Images/沙盒目录.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-ae133f6598ecb770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-05T13:26:50.000Z">
+<meta property="og:updated_time" content="2016-06-05T14:45:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS数据存储方式总结">
 <meta name="twitter:description" content="iOS应用中常用的数据存储方式有plist Preference(偏好设置),NSKeyedArchiver归档,SQLite3和 Core Data.接下来将介绍这几种数据存储方式的使用
@@ -356,6 +356,7 @@
 <h2 id="获取沙盒目录的两种方式"><a href="#获取沙盒目录的两种方式" class="headerlink" title="获取沙盒目录的两种方式"></a>获取沙盒目录的两种方式</h2><ul>
 <li>利用 NSHomeDirectory()函数,配合 stringByAppendingPathComponent:拼接成完整的根目录.</li>
 </ul>
+<a id="more"></a>
 <p><em>Demo Code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *home = NSHomeDirectory();</span><br><span class="line">NSString *documents = [home stringByAppendingPathComponent:@&quot;Documents&quot;];</span><br></pre></td></tr></table></figure>
 <p><strong>注意:</strong> 不建议采用这种方式来获取沙盒根目录,因为我们手敲的@”Documents”可能在未来某一版本的操作系统会被更改成其它的名字</p>
@@ -448,8 +449,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2015/09/05/你觉得简单的区分网络环境的图片加载/" rel="prev" title="你觉得简单的区分网络环境的图片加载">
-                你觉得简单的区分网络环境的图片加载 <i class="fa fa-chevron-right"></i>
+              <a href="/2015/09/05/Xcode调试巧/" rel="prev" title="Xcode调试巧">
+                Xcode调试巧 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
