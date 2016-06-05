@@ -1,0 +1,924 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、环境需求1.1  安装HomebrewHomebrew是OS X的套件(包)管理器，我们可以通过它获取并且安装很多组件安装方式:
+1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+##1.2  安装npm 和 Node.jsN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Native的开发环境配置">
+<meta property="og:url" content="http://lemtter.com/2016/02/27/React-Native的开发环境配置/index.html">
+<meta property="og:site_name" content="Lemtter">
+<meta property="og:description" content="一、环境需求1.1  安装HomebrewHomebrew是OS X的套件(包)管理器，我们可以通过它获取并且安装很多组件安装方式:
+1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+##1.2  安装npm 和 Node.jsN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-21834d9f29755f4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-f4b70b69c937286b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-fc9357d144343442.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-b69551fa6192565d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-ed01bcde5e3b132e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-05-28T11:16:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React Native的开发环境配置">
+<meta name="twitter:description" content="一、环境需求1.1  安装HomebrewHomebrew是OS X的套件(包)管理器，我们可以通过它获取并且安装很多组件安装方式:
+1/usr/bin/ruby -e &amp;quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot;
+##1.2  安装npm 和 Node.jsN">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/659811-21834d9f29755f4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> React Native的开发环境配置 | Lemtter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0d743852f614de6854b2866588b4d49e";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Lemtter</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Easy Man...</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React Native的开发环境配置
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-02-27T18:59:13+08:00" content="2016-02-27">
+              2016-02-27
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/27/React-Native的开发环境配置/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/27/React-Native的开发环境配置/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/02/27/React-Native的开发环境配置/" class="leancloud_visitors" data-flag-title="React Native的开发环境配置">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、环境需求"><a href="#一、环境需求" class="headerlink" title="一、环境需求"></a>一、环境需求</h1><h2 id="1-1-安装Homebrew"><a href="#1-1-安装Homebrew" class="headerlink" title="1.1  安装Homebrew"></a>1.1  安装Homebrew</h2><p>Homebrew是OS X的套件(包)管理器，我们可以通过它获取并且安装很多组件<br>安装方式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</span><br></pre></td></tr></table></figure>
+<p>##1.2  安装npm 和 Node.js<br>Node.js最好安装4.0及其以上更高版本，node安装成功后npm自动也就有了，直接下载安装Node.js<br><a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a></p>
+<h2 id="1-3-安装WatchMan"><a href="#1-3-安装WatchMan" class="headerlink" title="1.3  安装WatchMan"></a>1.3  安装WatchMan</h2><p>该插件用于监控bug文件和文件变化 ，并且可以触发指定的操作<br>安装方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install watchman</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>验证是否安装成功<br><img src="http://upload-images.jianshu.io/upload_images/659811-21834d9f29755f4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160527_2.png"></p>
+<h2 id="1-3-安装Flowflow是一个-JavaScript-的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误"><a href="#1-3-安装Flowflow是一个-JavaScript-的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误" class="headerlink" title="1.3  安装Flowflow是一个 JavaScript 的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误"></a>1.3  安装Flowflow是一个 JavaScript 的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误</h2><p>安装方式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install flow</span><br></pre></td></tr></table></figure></p>
+<p>验证是否安装成功<br><img src="http://upload-images.jianshu.io/upload_images/659811-f4b70b69c937286b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160527_3.png"></p>
+<p>(注意：如果提示command not found,请加上sudo获得最高权限)</p>
+<h1 id="二、React-Native安装"><a href="#二、React-Native安装" class="headerlink" title="二、React Native安装"></a>二、React Native安装</h1><h2 id="2-1-安装React-Native"><a href="#2-1-安装React-Native" class="headerlink" title="2.1 安装React Native"></a>2.1 安装React Native</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g react-native-cli</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-安装截图如下"><a href="#2-2-安装截图如下" class="headerlink" title="2.2 安装截图如下:"></a>2.2 安装截图如下:</h2><p><img src="http://upload-images.jianshu.io/upload_images/659811-fc9357d144343442.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160527_4.png"></p>
+<h1 id="三、-ios开发环境需求"><a href="#三、-ios开发环境需求" class="headerlink" title="三、 ios开发环境需求"></a>三、 ios开发环境需求</h1><p>Xcode 7 及其以上更高版本</p>
+<h1 id="四、-Android开发环境需求"><a href="#四、-Android开发环境需求" class="headerlink" title="四、 Android开发环境需求"></a>四、 Android开发环境需求</h1><p>安装最新版的JDK:</p>
+<p>下载安装地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>可以安装Android studio省略此步骤，建议安装Android studio。</p>
+<h2 id="4-1-安装Genymotion"><a href="#4-1-安装Genymotion" class="headerlink" title="4.1  安装Genymotion"></a>4.1  安装Genymotion</h2><p>Genymotion是一个第三方模拟器，它比Google官方的模拟器更易设置且性能更好。但是，它只针对个人用户免费。</p>
+<ol>
+<li>下载并安装Genymotion<br>   <a href="https://www.genymotion.com/" target="_blank" rel="external">https://www.genymotion.com/</a></li>
+<li>打开Genymotion,如果你尚未安装VirtualBox,它有可能会提示你安装</li>
+<li>创建一个模拟器并启动</li>
+<li>按下⌘+M可以打开开发者菜单(在安装并启动了React Native应用之后)</li>
+</ol>
+<h1 id="五、-React-Native的第一个应用"><a href="#五、-React-Native的第一个应用" class="headerlink" title="五、 React Native的第一个应用"></a>五、 React Native的第一个应用</h1><h2 id="5-1-执行命令-生成一个工程"><a href="#5-1-执行命令-生成一个工程" class="headerlink" title="5.1 执行命令,生成一个工程"></a>5.1 执行命令,生成一个工程</h2><p>react-native init 项目名称<br>注意:由于众所周知的网络原因，需要等待一段时间（具体视网络情况而定）。react-native命令行从npm官方源拖代码时会遇上麻烦，可以将npm仓库源替换为国内镜像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config set disturl https://npm.taobao.org/dist</span><br></pre></td></tr></table></figure></p>
+<h2 id="5-2-运行截图"><a href="#5-2-运行截图" class="headerlink" title="5.2  运行截图"></a>5.2  运行截图</h2><p><img src="http://upload-images.jianshu.io/upload_images/659811-b69551fa6192565d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160527_7.png"></p>
+<h2 id="5-3-目录结构截图"><a href="#5-3-目录结构截图" class="headerlink" title="5.3 目录结构截图"></a>5.3 目录结构截图</h2><p>目录结构分析:</p>
+<ol>
+<li>默认生成android和ios两个平台的原生项目；</li>
+<li>其中，index.android.js和index.ios.js文件为Android和iOS的空壳应用文件；</li>
+<li>此外，node_modules文件夹，是为Node.js存放和管理npm包资源，也包含React Native框架文件。</li>
+</ol>
+<p>查看index.ios.js中的代码:<br><img src="http://upload-images.jianshu.io/upload_images/659811-ed01bcde5e3b132e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160528_8.png"></p>
+<h1 id="六、运行工程文件"><a href="#六、运行工程文件" class="headerlink" title="六、运行工程文件"></a>六、运行工程文件</h1><p>不管是 iOS 还是 Android，在开发调试阶段，都需要在 Mac 上启动一个 HTTP 服务，称为Debug Server，默认运行在 8081 端口，APP 通 Debug Server 加载 js。</p>
+<h2 id="6-1-打开Xcode，运行你的第一个React-Native创建的iOS应用"><a href="#6-1-打开Xcode，运行你的第一个React-Native创建的iOS应用" class="headerlink" title="6.1 打开Xcode，运行你的第一个React Native创建的iOS应用"></a>6.1 打开Xcode，运行你的第一个React Native创建的iOS应用</h2><p>图1 - 启动React native 服务器<br>m</p>
+<p>图2 - 客户端运行界面</p>
+<h2 id="6-2-把React-Native创建的应用跑在Android上"><a href="#6-2-把React-Native创建的应用跑在Android上" class="headerlink" title="6.2 把React Native创建的应用跑在Android上"></a>6.2 把React Native创建的应用跑在Android上</h2><ol>
+<li>命令行执行cd SeeMyGoProduct,路径切换到项目主目录</li>
+<li>命令行执行react-native run-android进行加载运行android 应用。</li>
+<li>使用编辑器进行打开和修改index.android.js文件，接着通过菜单按钮选择Reload JS来进行刷新修改</li>
+</ol>
+<h1 id="七、管理React-Native库的版本"><a href="#七、管理React-Native库的版本" class="headerlink" title="七、管理React Native库的版本"></a>七、管理React Native库的版本</h1><p>在开发中，会经常的去控制React Native的版本库，得以适配各种条件下的开发，那该如何查看、控制ReactNative的版本呢？</p>
+<h2 id="7-1-查看本地的React-Native的版本"><a href="#7-1-查看本地的React-Native的版本" class="headerlink" title="7.1 查看本地的React Native的版本"></a>7.1 查看本地的React Native的版本</h2><p>命令行输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native --version</span><br></pre></td></tr></table></figure></p>
+<p>命令行效果</p>
+<h2 id="7-2-更新本地的React-Native的版本"><a href="#7-2-更新本地的React-Native的版本" class="headerlink" title="7.2 更新本地的React Native的版本"></a>7.2 更新本地的React Native的版本</h2><p>命令行输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update -g react-native-cli</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-3-查询react-native的npm包最新版本"><a href="#7-3-查询react-native的npm包最新版本" class="headerlink" title="7.3 查询react-native的npm包最新版本"></a>7.3 查询react-native的npm包最新版本</h2><p>NPM的全称是Node Package Manager ，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。<br>npm包地址 ：<a href="https://www.npmjs.com/package/react-native" target="_blank" rel="external">https://www.npmjs.com/package/react-native</a><br>命令行查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm info react-native</span><br></pre></td></tr></table></figure></p>
+<p>查询效果</p>
+<p>项目中查看</p>
+<h2 id="7-4-升级或者降级npm包的版本"><a href="#7-4-升级或者降级npm包的版本" class="headerlink" title="7.4 升级或者降级npm包的版本"></a>7.4 升级或者降级npm包的版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save react-native@0.18</span><br></pre></td></tr></table></figure>
+<h2 id="7-5-更新项目templates文件（可选）"><a href="#7-5-更新项目templates文件（可选）" class="headerlink" title="7.5 更新项目templates文件（可选）"></a>7.5 更新项目templates文件（可选）</h2><p>新的npm包会包含更新在运行react-native init命令生成的一些动态文件，例如init创建项目的时候会生成iOS和Android的子项目，我们可以通过以下的命令进行获取最新的代码<br>命令行查询<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-native upgrade</span><br></pre></td></tr></table></figure></p>
+<h1 id="八、WebStom设置React-Native代码提示"><a href="#八、WebStom设置React-Native代码提示" class="headerlink" title="八、WebStom设置React Native代码提示"></a>八、WebStom设置React Native代码提示</h1><h2 id="8-1-从gitHub上下载xml插件"><a href="#8-1-从gitHub上下载xml插件" class="headerlink" title="8.1  从gitHub上下载xml插件"></a>8.1  从gitHub上下载xml插件</h2><pre><code>git clone https://github.com/virtoolswebplayer/ReactNative-LiveTemplate
+</code></pre><h2 id="8-2-安装"><a href="#8-2-安装" class="headerlink" title="8.2  安装"></a>8.2  安装</h2><p>将ReactNative.xml复制到 ~/Library/Preferences/WebStorm10/templates ，然后重启 WebStrom</p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/02/02/微博-微信图片浏览过渡动画的实现/" rel="next" title="微博,微信图片浏览过渡动画的实现">
+                <i class="fa fa-chevron-left"></i> 微博,微信图片浏览过渡动画的实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/05/iPad横竖屏代码适配/" rel="prev" title="iPad横竖屏代码适配">
+                iPad横竖屏代码适配 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/02/27/React-Native的开发环境配置/"
+           data-title="React Native的开发环境配置" data-url="http://lemtter.com/2016/02/27/React-Native的开发环境配置/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="JMStack" />
+          <p class="site-author-name" itemprop="name">JMStack</p>
+          <p class="site-description motion-element" itemprop="description">千年暗室，一灯即明</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/JMStack" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/HeyJackMa" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、环境需求"><span class="nav-number">1.</span> <span class="nav-text">一、环境需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-安装Homebrew"><span class="nav-number">1.1.</span> <span class="nav-text">1.1  安装Homebrew</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-安装WatchMan"><span class="nav-number">1.2.</span> <span class="nav-text">1.3  安装WatchMan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-安装Flowflow是一个-JavaScript-的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误"><span class="nav-number">1.3.</span> <span class="nav-text">1.3  安装Flowflow是一个 JavaScript 的静态类型检查器，建议安装它，以方便找出代码中可能存在的类型错误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、React-Native安装"><span class="nav-number">2.</span> <span class="nav-text">二、React Native安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-安装React-Native"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 安装React Native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-安装截图如下"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 安装截图如下:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-ios开发环境需求"><span class="nav-number">3.</span> <span class="nav-text">三、 ios开发环境需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-Android开发环境需求"><span class="nav-number">4.</span> <span class="nav-text">四、 Android开发环境需求</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-安装Genymotion"><span class="nav-number">4.1.</span> <span class="nav-text">4.1  安装Genymotion</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-React-Native的第一个应用"><span class="nav-number">5.</span> <span class="nav-text">五、 React Native的第一个应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-执行命令-生成一个工程"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 执行命令,生成一个工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-运行截图"><span class="nav-number">5.2.</span> <span class="nav-text">5.2  运行截图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-目录结构截图"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 目录结构截图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、运行工程文件"><span class="nav-number">6.</span> <span class="nav-text">六、运行工程文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-打开Xcode，运行你的第一个React-Native创建的iOS应用"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 打开Xcode，运行你的第一个React Native创建的iOS应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-把React-Native创建的应用跑在Android上"><span class="nav-number">6.2.</span> <span class="nav-text">6.2 把React Native创建的应用跑在Android上</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、管理React-Native库的版本"><span class="nav-number">7.</span> <span class="nav-text">七、管理React Native库的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-查看本地的React-Native的版本"><span class="nav-number">7.1.</span> <span class="nav-text">7.1 查看本地的React Native的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-更新本地的React-Native的版本"><span class="nav-number">7.2.</span> <span class="nav-text">7.2 更新本地的React Native的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-查询react-native的npm包最新版本"><span class="nav-number">7.3.</span> <span class="nav-text">7.3 查询react-native的npm包最新版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-升级或者降级npm包的版本"><span class="nav-number">7.4.</span> <span class="nav-text">7.4 升级或者降级npm包的版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-更新项目templates文件（可选）"><span class="nav-number">7.5.</span> <span class="nav-text">7.5 更新项目templates文件（可选）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、WebStom设置React-Native代码提示"><span class="nav-number">8.</span> <span class="nav-text">八、WebStom设置React Native代码提示</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#8-1-从gitHub上下载xml插件"><span class="nav-number">8.1.</span> <span class="nav-text">8.1  从gitHub上下载xml插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-2-安装"><span class="nav-number">8.2.</span> <span class="nav-text">8.2  安装</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">JMStack</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"jmstack"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("S7OX6XYf8shG9o287iGUNQU1-gzGzoHsz", "piEE6zQUIXH63m6c6frltzGr");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
