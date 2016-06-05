@@ -402,23 +402,23 @@ images.jianshu.io/upload_images/659811-e289368edfe3b4cd.png?imageMogr2/auto-orie
 </blockquote>
 <p><em>既然是要存储数据,就得有数据存储的路径.在 iOS中获取文路径有固定的两种方法,由于 iOS沙盒机制的存在每个App只能访问到自己所属的几个文件路径.所以在正式介绍存储数据方式之前先了解沙盒路径,以及如何获取沙盒的路径</em></p>
 <hr>
-<h1 id="iOS-应用沙盒"><a href="#iOS-应用沙盒" class="headerlink" title="iOS 应用沙盒"></a>iOS 应用沙盒</h1><ul>
+<a id="more"></a>
+<h2 id="iOS-应用沙盒"><a href="#iOS-应用沙盒" class="headerlink" title="iOS 应用沙盒"></a>iOS 应用沙盒</h2><ul>
 <li>每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒</li>
-<li><p>App沙盒的文件系统目录 <img src="./Images/沙盒目录.png" alt="沙盒目录"></p>
+<li><p>App沙盒的文件系统目录 <img src="http://upload-images.jianshu.io/upload_images/659811-c0bdef509174256c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="沙盒目录.png"></p>
 <p>模拟器沙盒目录在/Users/用户名/Library/Developer/CoreSimulator/Devices//data/Containers/Data/Application//Documents</p>
 <p>需要意的是 App的 Bundle 并不在这一目录下,而是在/Users/用户名/Library/Developer/CoreSimulator/Devices//data/Bundle/Application进行统一的管理</p>
 </li>
 </ul>
-<h2 id="App-应用沙盒结构分析"><a href="#App-应用沙盒结构分析" class="headerlink" title="App 应用沙盒结构分析"></a>App 应用沙盒结构分析</h2><ul>
+<h3 id="App-应用沙盒结构分析"><a href="#App-应用沙盒结构分析" class="headerlink" title="App 应用沙盒结构分析"></a>App 应用沙盒结构分析</h3><ul>
 <li>Documents：保存应用运行时生成的需要持久化的数据，iTunes同步设备时会备份该目录。例如，游戏应用可将游戏存档保存在该目录</li>
 <li>tmp：保存应用运行时所需的临时数据，使用完毕后再将相应的文件从该目录删除。应用没有运行时，系统也可能会清除该目录下的文件。iTunes同步设备时不会备份该目录</li>
 <li>Library/Caches：保存应用运行时生成的需要持久化的数据，iTunes同步设备时不会备份该目录。一般存储体积大、不需要备份的非重要数据</li>
 <li>Library/Preference：保存应用的所有偏好设置，iOS的Settings(设置)应用会在该目录中查找应用的设置信息。iTunes同步设备时会备份该目录</li>
 </ul>
-<h2 id="获取沙盒目录的两种方式"><a href="#获取沙盒目录的两种方式" class="headerlink" title="获取沙盒目录的两种方式"></a>获取沙盒目录的两种方式</h2><ul>
+<h3 id="获取沙盒目录的两种方式"><a href="#获取沙盒目录的两种方式" class="headerlink" title="获取沙盒目录的两种方式"></a>获取沙盒目录的两种方式</h3><ul>
 <li>利用 NSHomeDirectory()函数,配合 stringByAppendingPathComponent:拼接成完整的根目录.</li>
 </ul>
-<a id="more"></a>
 <p><em>Demo Code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *home = NSHomeDirectory();</span><br><span class="line">NSString *documents = [home stringByAppendingPathComponent:@&quot;Documents&quot;];</span><br></pre></td></tr></table></figure>
 <p><strong>注意:</strong> 不建议采用这种方式来获取沙盒根目录,因为我们手敲的@”Documents”可能在未来某一版本的操作系统会被更改成其它的名字</p>
@@ -427,7 +427,7 @@ images.jianshu.io/upload_images/659811-e289368edfe3b4cd.png?imageMogr2/auto-orie
 </ul>
 <p><em>Demo code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//NSUserDominMask 代表从用户文件目录下找</span><br><span class="line">//YES 代表展开路径中的波浪字符&quot;~&quot;</span><br><span class="line">NSSArray *array = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDominMask, NO);</span><br><span class="line">//在 iOS中,只有一个目录跟传入的参数匹配,所以这个集合只有一个元素</span><br><span class="line">NSString *document = [array objectAtIndex:0];</span><br></pre></td></tr></table></figure>
-<h1 id="属性列表存储方式"><a href="#属性列表存储方式" class="headerlink" title="属性列表存储方式"></a>属性列表存储方式</h1><p><em>属性列表是一种XML格式的文件，拓展名为plist,如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，就可以使用writeToFile:atomically:方法直接将对象写到属性列表文件中,但是自定义的类并不写直接写入 plist文件</em></p>
+<h2 id="属性列表存储方式"><a href="#属性列表存储方式" class="headerlink" title="属性列表存储方式"></a>属性列表存储方式</h2><p><em>属性列表是一种XML格式的文件，拓展名为plist,如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，就可以使用writeToFile:atomically:方法直接将对象写到属性列表文件中,但是自定义的类并不写直接写入 plist文件</em></p>
 <ul>
 <li>将对象写入 plist</li>
 </ul>
@@ -438,7 +438,7 @@ images.jianshu.io/upload_images/659811-e289368edfe3b4cd.png?imageMogr2/auto-orie
 </ul>
 <p><em>Demo Code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 读取Documents/stu.plist的内容，实例化NSDictionary</span><br><span class="line">NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];</span><br><span class="line">NSLog(@&quot;name:%@&quot;, [dict objectForKey:@&quot;name&quot;]);</span><br><span class="line">NSLog(@&quot;phone:%@&quot;, [dict objectForKey:@&quot;phone&quot;]);</span><br></pre></td></tr></table></figure>
-<h1 id="偏好-也叫默认-设置存储方式"><a href="#偏好-也叫默认-设置存储方式" class="headerlink" title="偏好(也叫默认)设置存储方式"></a>偏好(也叫默认)设置存储方式</h1><blockquote>
+<h2 id="偏好-也叫默认-设置存储方式"><a href="#偏好-也叫默认-设置存储方式" class="headerlink" title="偏好(也叫默认)设置存储方式"></a>偏好(也叫默认)设置存储方式</h2><blockquote>
 <p>很多iOS应用都支持偏好设置，比如保存用户名、密码、字体大小等设置，iOS提供了一套标准的解决方案来为应用加入偏好设置功能.每个应用都有个NSUserDefaults实例，通过它来存取偏好设置.实际上这种方式也是将数据保存为 plist 文件,只是NSUserDefaults类实现了一套自己的读取与保存 plist文件的方法.</p>
 </blockquote>
 <ul>
@@ -452,8 +452,8 @@ images.jianshu.io/upload_images/659811-e289368edfe3b4cd.png?imageMogr2/auto-orie
 </ul>
 <p><em>Demo Code</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];</span><br><span class="line">NSString *username = [defaults stringForKey:@&quot;username&quot;];</span><br><span class="line">float textSize = [defaults floatForKey:@&quot;text_size&quot;];</span><br><span class="line">BOOL autoLogin = [defaults boolForKey:@&quot;auto_login&quot;];</span><br></pre></td></tr></table></figure>
-<h1 id="NSKeyedArchiver方式存储数据"><a href="#NSKeyedArchiver方式存储数据" class="headerlink" title="NSKeyedArchiver方式存储数据"></a>NSKeyedArchiver方式存储数据</h1><p>如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，可以直接用NSKeyedArchiver进行归档和恢复,但不是所有的对象都可以直接用这种方法进行归档，只有遵守了NSCoding协议的对象才可以.</p>
-<h2 id="NSCoding协议"><a href="#NSCoding协议" class="headerlink" title="NSCoding协议"></a>NSCoding协议</h2><p>NSCoding只有两个协议方法 encodeWithCoder: ,initWithCoder:</p>
+<h2 id="NSKeyedArchiver方式存储数据"><a href="#NSKeyedArchiver方式存储数据" class="headerlink" title="NSKeyedArchiver方式存储数据"></a>NSKeyedArchiver方式存储数据</h2><p>如果对象是NSString、NSDictionary、NSArray、NSData、NSNumber等类型，可以直接用NSKeyedArchiver进行归档和恢复,但不是所有的对象都可以直接用这种方法进行归档，只有遵守了NSCoding协议的对象才可以.</p>
+<h3 id="NSCoding协议"><a href="#NSCoding协议" class="headerlink" title="NSCoding协议"></a>NSCoding协议</h3><p>NSCoding只有两个协议方法 encodeWithCoder: ,initWithCoder:</p>
 <ul>
 <li>encodeWithCoder: 每次归档(archiver)对象时都会调用这个方法进行压缩归档.一般在这个方法里面指定如何归档对象中的每个实例变量，可以使用encodeObject:forKey:方法归档实例变量</li>
 <li>initWithCoder: 每次从文件中恢复对象时,都调用这个方法.一般在这个方法里面指定如何解码文件中的数据为对象的实例变量,解码实例变量可以用decodeObject:forKey方法</li>
@@ -472,9 +472,9 @@ images.jianshu.io/upload_images/659811-e289368edfe3b4cd.png?imageMogr2/auto-orie
 <li>应该在encodeWithCoder:方法中加上一句[super encodeWithCode:encode];确保继承的实例变量也能被编码</li>
 <li>确保继承的实例变量也能被解码，即也能被归档应该在initWithCoder:方法中加上一句self = [super initWithCoder:decoder];</li>
 </ul>
-<h2 id="归档的另类使用方式"><a href="#归档的另类使用方式" class="headerlink" title="归档的另类使用方式"></a>归档的另类使用方式</h2><p><em>利用归档实现深复制</em></p>
+<h3 id="归档的另类使用方式"><a href="#归档的另类使用方式" class="headerlink" title="归档的另类使用方式"></a>归档的另类使用方式</h3><p><em>利用归档实现深复制</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 临时存储person1的数据</span><br><span class="line">NSData *data = [NSKeyedArchiver archivedDataWithRootObject:person1];</span><br><span class="line">// 解析data，生成一个新的Person对象</span><br><span class="line">Student *person2 = [NSKeyedUnarchiver unarchiveObjectWithData:data];</span><br></pre></td></tr></table></figure>
-<h1 id="NSData方式保存数据"><a href="#NSData方式保存数据" class="headerlink" title="NSData方式保存数据"></a>NSData方式保存数据</h1><p>NSData的方式保存数据其实是作为NSKeyedArchiver的补充,NSKeyedArchiver每次只能用archiveRootObject:toFile:方法保存一个数据对象.如果需要同时保存多个数据对象则需要借助NSData,NSData可以为一些数据提供临时存储空间，以便随后写入文件，或者存放从磁盘读取的文件内容.可以使用[NSMutableData data]创建可变数据空间. 借助NSData实现多个对象的归档的过程可以用如下图示表示: <img src="http://upload-images.jianshu.io/upload_images/659811-ae133f6598ecb770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="data"></p>
+<h2 id="NSData方式保存数据"><a href="#NSData方式保存数据" class="headerlink" title="NSData方式保存数据"></a>NSData方式保存数据</h2><p>NSData的方式保存数据其实是作为NSKeyedArchiver的补充,NSKeyedArchiver每次只能用archiveRootObject:toFile:方法保存一个数据对象.如果需要同时保存多个数据对象则需要借助NSData,NSData可以为一些数据提供临时存储空间，以便随后写入文件，或者存放从磁盘读取的文件内容.可以使用[NSMutableData data]创建可变数据空间. 借助NSData实现多个对象的归档的过程可以用如下图示表示: <img src="http://upload-images.jianshu.io/upload_images/659811-ae133f6598ecb770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="data"></p>
 <p><em>Demo Code: 归档多个对象</em></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// 新建一块可变数据区</span><br><span class="line">NSMutableData *data = [NSMutableData data];</span><br><span class="line">// 将数据区连接到一个NSKeyedArchiver对象</span><br><span class="line">NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];</span><br><span class="line">// 开始存档对象，存档的数据都会存储到NSMutableData中</span><br><span class="line">[archiver encodeObject:person1 forKey:@&quot;person1&quot;];</span><br><span class="line">[archiver encodeObject:person2 forKey:@&quot;person2&quot;];</span><br><span class="line">// 存档完毕(一定要调用这个方法)</span><br><span class="line">[archiver finishEncoding];</span><br><span class="line">// 将存档的数据写入文件</span><br><span class="line">[data writeToFile:path atomically:YES];</span><br></pre></td></tr></table></figure>
 <p><em>Demo Code: 从归档文件中恢复对象</em></p>
