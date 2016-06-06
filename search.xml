@@ -4,6 +4,14 @@
   
     
     <entry>
+      <title><![CDATA[ReactNative 仿美团Demo]]></title>
+      <url>http://lemtter.com/2016/06/06/ReactNative-%E4%BB%BF%E7%BE%8E%E5%9B%A2Demo/</url>
+      <content type="html"><![CDATA[<p>下面是最近找工作用ReactNative仿的美团客户端，到目前为此还只完成了四个页面的搭建以及部分链接的跳转。因为美团客端返回的JSON数据不大适合用ReactNative。所以这里是根据需要求自己拼接的部分假数据。后面有时间我会写一个总结来帮助大家来写自己的第一个ReactNative的跨平台Demo,敬请期待。</p>
+<p><img src="http://o6jvfp7kw.bkt.clouddn.com/meitu%20iOS&amp;Android%20Demo.gif" alt="Demo"></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[远程通知推送教程]]></title>
       <url>http://lemtter.com/2016/05/11/%E8%BF%9C%E7%A8%8B%E9%80%9A%E7%9F%A5%E6%8E%A8%E9%80%81%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<blockquote>
