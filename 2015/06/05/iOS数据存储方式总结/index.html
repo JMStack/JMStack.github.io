@@ -90,15 +90,15 @@
 <meta property="og:description" content="iOS应用中常用的数据存储方式有plist Preference(偏好设置),NSKeyedArchiver归档,SQLite3和 Core Data.接下来将介绍这几种数据存储方式的使用
 
 既然是要存储数据,就得有数据存储的路径.在 iOS中获取文路径有固定的两种方法,由于 iOS沙盒机制的存在每个App只能访问到自己所属的几个文件路径.所以在正式介绍存储数据方式之前先了解沙盒路径,以及如何获">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-c0bdef509174256c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E6%B2%99%E7%9B%92%E7%9B%AE%E5%BD%95.png">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/659811-ae133f6598ecb770.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2016-06-05T14:52:34.000Z">
+<meta property="og:updated_time" content="2016-06-06T14:16:52.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS数据存储方式总结">
 <meta name="twitter:description" content="iOS应用中常用的数据存储方式有plist Preference(偏好设置),NSKeyedArchiver归档,SQLite3和 Core Data.接下来将介绍这几种数据存储方式的使用
 
 既然是要存储数据,就得有数据存储的路径.在 iOS中获取文路径有固定的两种方法,由于 iOS沙盒机制的存在每个App只能访问到自己所属的几个文件路径.所以在正式介绍存储数据方式之前先了解沙盒路径,以及如何获">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/659811-c0bdef509174256c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="http://o6jvfp7kw.bkt.clouddn.com/%E6%B2%99%E7%9B%92%E7%9B%AE%E5%BD%95.png">
 
 
 
@@ -343,7 +343,7 @@
 <a id="more"></a>
 <h2 id="iOS-应用沙盒"><a href="#iOS-应用沙盒" class="headerlink" title="iOS 应用沙盒"></a>iOS 应用沙盒</h2><ul>
 <li>每个iOS应用都有自己的应用沙盒(应用沙盒就是文件系统目录)，与其他文件系统隔离。应用必须待在自己的沙盒里，其他应用不能访问该沙盒</li>
-<li><p>App沙盒的文件系统目录 <img src="http://upload-images.jianshu.io/upload_images/659811-c0bdef509174256c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="沙盒目录.png"></p>
+<li><p>App沙盒的文件系统目录 <img src="http://o6jvfp7kw.bkt.clouddn.com/%E6%B2%99%E7%9B%92%E7%9B%AE%E5%BD%95.png" alt="沙盒目录.png"></p>
 <p>模拟器沙盒目录在/Users/用户名/Library/Developer/CoreSimulator/Devices//data/Containers/Data/Application//Documents</p>
 <p>需要意的是 App的 Bundle 并不在这一目录下,而是在/Users/用户名/Library/Developer/CoreSimulator/Devices//data/Bundle/Application进行统一的管理</p>
 </li>
